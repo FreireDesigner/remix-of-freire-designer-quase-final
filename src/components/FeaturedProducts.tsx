@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 
 const products = [
-  { name: "Produto Destaque 1", price: 42.0, originalPrice: 49.9, discount: 15, isNew: true },
-  { name: "Produto Destaque 2", price: 52.0, originalPrice: 65.0, discount: 20, isExclusive: true },
-  { name: "Produto Destaque 3", price: 48.0, originalPrice: 53.0, discount: 10, isNew: true },
-  { name: "Produto Destaque 4", price: 55.0, originalPrice: 70.0, discount: 21, isExclusive: true },
-  { name: "Produto Destaque 5", price: 45.0, originalPrice: 55.0, discount: 18, isNew: true },
+  { name: "Produto Destaque 1", price: 42.0, originalPrice: 49.9, discount: 15, isNew: true, isExclusive: false },
+  { name: "Modelo Exclusivo FD", price: 79.9, originalPrice: 99.9, discount: 20, isNew: false, isExclusive: true },
+  { name: "Produto Destaque 3", price: 48.0, originalPrice: 53.0, discount: 10, isNew: true, isExclusive: false },
+  { name: "Produto Destaque 4", price: 55.0, originalPrice: 70.0, discount: 21, isNew: false, isExclusive: false },
+  { name: "Arte Premium FD", price: 89.9, originalPrice: 109.9, discount: 18, isNew: false, isExclusive: true },
 ];
 
 const FeaturedProducts = () => {
@@ -50,7 +50,10 @@ const FeaturedProducts = () => {
         className="flex gap-3 overflow-x-hidden pb-2"
       >
         {duplicatedProducts.map((product, index) => (
-          <div key={index} className="min-w-[180px] max-w-[180px]">
+          <div 
+            key={index} 
+            className={`min-w-[180px] max-w-[180px] ${product.isExclusive ? 'rounded-xl border-[3px] border-amber-400' : ''}`}
+          >
             <ProductCard
               name={product.name}
               price={product.price}
