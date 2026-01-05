@@ -103,9 +103,9 @@ const FacaSua = () => {
         </p>
         
         <div className="relative inline-block">
-          <div className="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-blue-900 rounded-full px-6 py-3 flex items-center gap-3 shadow-xl">
-            <Sparkles className="w-5 h-5 flex-shrink-0" />
-            <span className="font-bold text-sm">BÔNUS: Logo Personalizada e Exclusiva Grátis!</span>
+          <div className="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 rounded-full px-6 py-3 flex items-center gap-3 shadow-xl">
+            <Sparkles className="w-5 h-5 flex-shrink-0 text-black" />
+            <span className="font-bold text-sm text-black">BÔNUS: Logo Personalizada e Exclusiva Grátis!</span>
           </div>
         </div>
         
@@ -373,8 +373,7 @@ const FacaSua = () => {
           </div>
           
           <div className="bg-primary/10 rounded-xl p-3 mb-4 text-sm text-center">
-            <span className="text-foreground">Nossa equipe criará a arte.</span>{" "}
-            <span className="text-muted-foreground">Descreva sua ideia em detalhes.</span>
+            <span className="text-muted-foreground">Nossa equipe criará a arte. Descreva sua ideia em detalhes.</span>
           </div>
           
           <div className="mb-4">
