@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 218 100% 44%;
+    --primary-light: 216 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 63% 49%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 218 100% 44%;
+
+    --radius: 0.75rem;
+
+    /* Custom Colors - New Blue Gradient */
+    --brand-blue: 218 100% 33%;
+    --brand-blue-light: 216 100% 50%;
+    --brand-orange: 24 95% 53%;
+    --brand-yellow: 45 93% 47%;
+    --brand-gold: 48 96% 53%;
+    --brand-gold-light: 48 100% 70%;
+    --brand-green: 142 69% 58%;
+    --brand-pink: 330 81% 60%;
+    --brand-purple: 270 60% 60%;
+
+    /* Category Colors */
+    --cat-blue: 218 100% 33%;
+    --cat-purple: 270 60% 65%;
+    --cat-pink: 330 81% 60%;
+    --cat-orange: 24 95% 53%;
+    --cat-gold: 43 74% 49%;
+
+    /* Material Icon Colors */
+    --material-blue: 218 100% 33%;
+    --material-purple: 270 60% 60%;
+    --material-orange: 24 95% 53%;
+    --material-pink: 330 81% 60%;
+
+    /* Gradients - New Blue Gradient */
+    --gradient-blue: linear-gradient(135deg, #0038a8 0%, #0059fa 100%);
+    --gradient-banner: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(0 84% 60%) 100%);
+    --gradient-instagram: linear-gradient(135deg, hsl(330 81% 60%) 0%, hsl(270 60% 60%) 50%, hsl(24 95% 53%) 100%);
+    --gradient-gold: linear-gradient(180deg, hsl(48 100% 70%) 0%, hsl(48 96% 53%) 100%);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+  }
+}
+
+@layer components {
+  .gradient-blue {
+    background: linear-gradient(135deg, #0038a8 0%, #0059fa 100%);
+  }
+
+  .gradient-banner {
+    background: linear-gradient(135deg, hsl(var(--brand-orange)) 0%, hsl(0 84% 60%) 100%);
+  }
+
+  .gradient-instagram {
+    background: linear-gradient(135deg, hsl(340 82% 52%) 0%, hsl(280 70% 50%) 50%, hsl(30 100% 50%) 100%);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(180deg, hsl(48 100% 75%) 0%, hsl(48 96% 53%) 100%);
+  }
+
+  .gradient-gold-animated {
+    background: linear-gradient(135deg, hsl(48 100% 70%) 0%, hsl(48 96% 53%) 50%, hsl(48 100% 70%) 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-reverse 25s linear infinite;
+  }
+
+  .category-blue {
+    background: linear-gradient(135deg, #0038a8 0%, #0059fa 100%);
+  }
+
+  .category-purple {
+    background: hsl(var(--cat-purple));
+  }
+
+  .category-pink {
+    background: hsl(var(--cat-pink));
+  }
+
+  .category-orange {
+    background: hsl(var(--cat-orange));
+  }
+
+  .category-gold {
+    background: hsl(var(--cat-gold));
+  }
+
+  .shadow-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-card-hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .wave-divider-blue {
+    position: relative;
+  }
+
+  .wave-divider-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0,50 C360,100 720,0 1080,50 C1260,75 1350,75 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: cover;
+  }
+
+  .wave-divider-white {
+    position: relative;
+  }
+
+  .wave-divider-white::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%230045cc' d='M0,50 C360,100 720,0 1080,50 C1260,75 1350,75 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: cover;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
