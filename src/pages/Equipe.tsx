@@ -1,4 +1,5 @@
-import { Star, Sparkles, Users, Heart, TrendingUp, Award, Rocket, Palette, MessageCircle, CheckCircle, Scissors, ShirtIcon, ThumbsUp, Headphones } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Star, Sparkles, Users, Heart, TrendingUp, Award, Rocket, Palette, MessageCircle, CheckCircle, Scissors, ShirtIcon, ThumbsUp, Headphones, Truck } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -79,55 +80,120 @@ const diferenciais = [
   },
   {
     icon: Palette,
-    title: "Design Exclusivo",
+    title: "Design Exclusivo que se Destaca",
     description: "Artes 100% originais criadas especialmente para você. Nada de templates genéricos, cada projeto é uma obra única."
+  },
+  {
+    icon: Sparkles,
+    title: "Vista suas Maiores Ideias",
+    description: "Transformamos seus conceitos em realidade visual. Sua visão ganha forma através de arte profissional e personalizada."
+  },
+  {
+    icon: Truck,
+    title: "Entrega em Todo Brasil",
+    description: "Atendemos clientes de norte a sul do país. Envio seguro e rastreável para qualquer região brasileira."
   }
 ];
 
 const equipe = [
-  { name: "Designer Gráfico", icon: Palette, description: "Criação de artes exclusivas" },
-  { name: "Costura", icon: Scissors, description: "Acabamento perfeito" },
-  { name: "Confecção", icon: ShirtIcon, description: "Produção de qualidade" },
-  { name: "Aprovação de Arte", icon: ThumbsUp, description: "Validação com cliente" },
-  { name: "Suporte", icon: Headphones, description: "Atendimento humanizado" }
+  { name: "Designer Gráfico", description: "Criação de artes exclusivas" },
+  { name: "Costura", description: "Acabamento perfeito" },
+  { name: "Confecção", description: "Produção de qualidade" },
+  { name: "Aprovação de Arte", description: "Validação com cliente" },
+  { name: "Suporte", description: "Atendimento humanizado" }
 ];
 
 const stats = [
-  { icon: Users, value: "500+", label: "Turmas Atendidas" },
-  { icon: Heart, value: "98%", label: "de Satisfação" },
-  { icon: Sparkles, value: "2000+", label: "Artes Criadas" }
+  { icon: Users, value: 500, suffix: "+", label: "Turmas Atendidas" },
+  { icon: Heart, value: 97, suffix: "%", label: "Satisfação" },
+  { icon: Sparkles, value: 500, suffix: "+", label: "Artes Criadas" }
 ];
 
+const experienceStats = [
+  { value: 5, suffix: "+", label: "Anos de Experiência" },
+  { value: 200, suffix: "+", label: "Clientes Satisfeitos" },
+  { value: 500, suffix: "+", label: "Artes Criadas" },
+  { value: 97, suffix: "%", label: "Satisfação" }
+];
+
+const useCountUp = (end: number, duration: number = 2000, start: boolean = false) => {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    if (!start) return;
+    
+    let startTime: number;
+    let animationFrame: number;
+    
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      setCount(Math.floor(progress * end));
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+    
+    animationFrame = requestAnimationFrame(animate);
+    
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration, start]);
+  
+  return count;
+};
+
 const Equipe = () => {
+  const [isStatsVisible, setIsStatsVisible] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsStatsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary to-blue-700 text-white px-4 py-12 text-center relative">
+      <section className="bg-gradient-to-b from-blue-800 to-primary text-white px-4 py-12 text-center relative">
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
           <Star className="w-4 h-4" />
-          <span className="text-sm font-medium">5 Anos de História e Dedicação</span>
+          <span className="text-sm font-normal">5 Anos de História e Dedicação</span>
         </div>
         
-        <h1 className="text-3xl font-extrabold mb-4 leading-tight">
+        <h1 className="text-3xl font-bold mb-4 leading-tight">
           Conheça a<br />FDesigner
         </h1>
         
-        <p className="text-white/90 text-base mb-4 max-w-sm mx-auto">
+        <p className="text-white/90 text-base font-light mb-4 max-w-sm mx-auto">
           Mais do que um estúdio de design, somos realizadores de sonhos.
         </p>
         
-        <p className="text-white font-bold text-lg mb-8">
+        <p className="text-white font-medium text-lg mb-8">
           5 anos entregando pedidos sempre além do esperado!
         </p>
         
-        {/* Stats */}
+        {/* Stats - Transparent rectangles style */}
         <div className="space-y-3 max-w-sm mx-auto">
           {stats.map((stat, index) => (
-            <div key={index} className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-center gap-3">
+            <div key={index} className="border-2 border-white/40 bg-white/10 backdrop-blur-sm rounded-xl px-6 py-3 flex items-center justify-center gap-3">
               <stat.icon className="w-5 h-5" />
-              <span className="font-bold">{stat.value} {stat.label}</span>
+              <span className="font-normal text-white">{stat.value}{stat.suffix} {stat.label}</span>
             </div>
           ))}
         </div>
@@ -138,38 +204,38 @@ const Equipe = () => {
       {/* Nossa Jornada - Timeline */}
       <section className="px-4 py-12">
         <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4 mx-auto block text-center">
-          <span className="text-sm font-medium text-primary">De Onde Viemos</span>
+          <span className="text-sm font-normal text-primary">De Onde Viemos</span>
         </div>
         
-        <h2 className="text-2xl font-extrabold text-center text-foreground mb-2">
+        <h2 className="text-2xl font-semibold text-center text-foreground mb-2">
           Uma Jornada de Paixão e Dedicação
         </h2>
         
-        <p className="text-center text-muted-foreground mb-8 max-w-sm mx-auto">
+        <p className="text-center text-muted-foreground font-light mb-8 max-w-sm mx-auto">
           Cada marca tem uma história. A nossa é feita de sonhos realizados, clientes satisfeitos e muita arte exclusiva!
         </p>
         
         {/* Timeline */}
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-[28px] top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/50 to-primary/20 rounded-full" />
+          {/* Timeline line - solid color */}
+          <div className="absolute left-[28px] top-0 bottom-0 w-1 bg-primary rounded-full" />
           
           <div className="space-y-6">
             {timelineEvents.map((event, index) => (
               <div key={index} className="flex gap-4">
-                {/* Icon */}
-                <div className={`w-14 h-14 ${event.color} rounded-full flex items-center justify-center flex-shrink-0 z-10`}>
+                {/* Icon with blue border */}
+                <div className={`w-14 h-14 ${event.color} rounded-full flex items-center justify-center flex-shrink-0 z-10 border-4 border-blue-400`}>
                   <event.icon className="w-6 h-6 text-white" />
                 </div>
                 
-                {/* Content */}
-                <div className="flex-1 bg-blue-50 rounded-2xl p-4 border border-blue-100">
-                  <div className="flex items-center gap-2 text-primary font-bold mb-1">
+                {/* Content with blue border */}
+                <div className="flex-1 bg-blue-50 rounded-2xl p-4 border-2 border-blue-400">
+                  <div className="flex items-center gap-2 text-primary font-medium mb-1">
                     <event.icon className="w-4 h-4" />
                     <span>{event.year}</span>
                   </div>
-                  <h3 className="font-bold text-foreground mb-2">{event.title}</h3>
-                  <p className="text-sm text-muted-foreground">{event.description}</p>
+                  <h3 className="font-medium text-foreground mb-2">{event.title}</h3>
+                  <p className="text-sm text-muted-foreground font-light">{event.description}</p>
                 </div>
               </div>
             ))}
@@ -179,27 +245,27 @@ const Equipe = () => {
 
       {/* Missão Section */}
       <section className="bg-gradient-to-b from-primary to-blue-700 text-white px-4 py-12 mx-4 rounded-3xl mb-8">
-        <h2 className="text-2xl font-extrabold text-center mb-4">
+        <h2 className="text-2xl font-medium text-center mb-4">
           Nossa Missão:<br />Entregar Sempre Além do Esperado
         </h2>
         
-        <p className="text-white/90 text-center mb-8 leading-relaxed">
+        <p className="text-white/90 text-center mb-8 leading-relaxed font-light">
           Acreditamos que cada evento merece ser único e memorável. Por isso, trabalhamos com paixão para criar artes que contam histórias, fortalecem laços e eternizam momentos especiais. Não somos apenas um estúdio de design - somos parceiros que entendem a importância do seu momento especial.
         </p>
         
         <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-center gap-3 max-w-xs mx-auto">
           <Heart className="w-5 h-5 text-pink-300" />
-          <span className="font-medium">Comprometimento total com sua satisfação</span>
+          <span className="font-normal">Comprometimento total com sua satisfação</span>
         </div>
       </section>
 
       {/* Pilares Section */}
       <section className="px-4 py-8">
-        <h2 className="text-2xl font-extrabold text-foreground mb-2">
+        <h2 className="text-2xl font-semibold text-foreground mb-2">
           Os Pilares da FDesigner
         </h2>
         
-        <p className="text-muted-foreground mb-8">
+        <p className="text-muted-foreground font-light mb-8">
           Valores que guiam cada decisão, cada arte e cada relacionamento com nossos clientes
         </p>
         
@@ -210,9 +276,9 @@ const Equipe = () => {
                 <pilar.icon className="w-8 h-8 text-white" />
               </div>
               
-              <h3 className="text-xl font-bold text-foreground mb-1">{pilar.title}</h3>
-              <p className="text-sm font-bold text-primary mb-3">{pilar.subtitle}</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">{pilar.description}</p>
+              <h3 className="text-xl font-medium text-foreground mb-1">{pilar.title}</h3>
+              <p className="text-sm font-medium text-primary mb-3">{pilar.subtitle}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed font-light">{pilar.description}</p>
               
               <div className="w-12 h-1 bg-primary rounded-full mt-4" />
             </div>
@@ -220,24 +286,42 @@ const Equipe = () => {
         </div>
       </section>
 
+      {/* Stats Counter Section */}
+      <section ref={statsRef} className="bg-primary px-4 py-12">
+        <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+          {experienceStats.map((stat, index) => {
+            const count = useCountUp(stat.value, 2000, isStatsVisible);
+            return (
+              <div key={index} className="text-center text-white">
+                <div className="text-3xl font-bold mb-1">
+                  {count}{stat.suffix}
+                </div>
+                <p className="text-white/80 text-sm font-light">{stat.label}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Conheça Nossa Equipe */}
       <section className="px-4 py-12 bg-muted/30">
-        <h2 className="text-2xl font-extrabold text-center text-foreground mb-2">
+        <h2 className="text-2xl font-semibold text-center text-foreground mb-2">
           Conheça Nossa Equipe
         </h2>
         
-        <p className="text-center text-muted-foreground mb-8">
+        <p className="text-center text-muted-foreground font-light mb-8">
           Profissionais dedicados em cada etapa do seu projeto
         </p>
         
         <div className="grid grid-cols-2 gap-4">
           {equipe.map((membro, index) => (
             <div key={index} className={`bg-card rounded-2xl p-4 text-center shadow-sm border border-border ${index === equipe.length - 1 ? 'col-span-2 max-w-[200px] mx-auto' : ''}`}>
-              <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                <membro.icon className="w-7 h-7 text-primary" />
+              {/* Photo placeholder */}
+              <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-3 border-2 border-primary/30 flex items-center justify-center overflow-hidden">
+                <span className="text-xs text-gray-400 font-light">Foto</span>
               </div>
-              <h3 className="font-bold text-foreground text-sm mb-1">{membro.name}</h3>
-              <p className="text-xs text-muted-foreground">{membro.description}</p>
+              <h3 className="font-medium text-foreground text-sm mb-1">{membro.name}</h3>
+              <p className="text-xs text-muted-foreground font-light">{membro.description}</p>
             </div>
           ))}
         </div>
@@ -245,28 +329,30 @@ const Equipe = () => {
 
       {/* Por Que Escolher */}
       <section className="px-4 py-12">
-        <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full mb-4 mx-auto block text-center w-fit">
-          <span className="text-sm font-medium">O Que Nos Torna Especiais</span>
+        <div className="flex justify-center mb-4">
+          <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full">
+            <span className="text-sm font-normal">O Que Nos Torna Especiais</span>
+          </div>
         </div>
         
-        <h2 className="text-2xl font-extrabold text-center text-foreground mb-2">
+        <h2 className="text-2xl font-semibold text-center text-foreground mb-2">
           Por Que Escolher a FDesigner?
         </h2>
         
-        <p className="text-center text-muted-foreground mb-8">
+        <p className="text-center text-muted-foreground font-light mb-8">
           Não somos apenas mais um fornecedor. Somos o parceiro que você pode confiar nos momentos importantes!
         </p>
         
         <div className="space-y-4">
           {diferenciais.map((item, index) => (
-            <div key={index} className="bg-blue-50 rounded-2xl p-5 border border-blue-100">
+            <div key={index} className="bg-blue-50 rounded-2xl p-5 border-2 border-blue-400">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <h3 className="font-medium text-foreground mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground font-light">{item.description}</p>
                 </div>
               </div>
             </div>
@@ -278,17 +364,17 @@ const Equipe = () => {
       <section className="bg-gradient-to-b from-primary to-blue-700 text-white px-4 py-12 text-center">
         <Sparkles className="w-16 h-16 mx-auto mb-6 opacity-80" />
         
-        <h2 className="text-2xl font-extrabold mb-4">
+        <h2 className="text-2xl font-semibold mb-4">
           Pronto para Criar Algo Incrível Juntos?
         </h2>
         
-        <p className="text-white/90 mb-8">
-          Junte-se a <span className="font-bold">500+ turmas e grupos</span> que já confiam em nosso trabalho. Vamos transformar suas ideias em arte visual memorável!
+        <p className="text-white/90 mb-8 font-light">
+          Junte-se a <span className="font-medium">500+ turmas e grupos</span> que já confiam em nosso trabalho. Vamos transformar suas ideias em arte visual memorável!
         </p>
         
         <button 
           onClick={() => window.open("https://wa.me/5511999999999", "_blank")}
-          className="w-full bg-white text-foreground px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-3 mb-4"
+          className="w-full bg-white text-foreground px-6 py-4 rounded-xl font-medium flex items-center justify-center gap-3 mb-4"
         >
           <MessageCircle className="w-5 h-5" />
           Solicitar Orçamento Agora
@@ -296,18 +382,18 @@ const Equipe = () => {
         
         <button 
           onClick={() => window.location.href = "/"}
-          className="w-full bg-transparent border-2 border-white text-white px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-3"
+          className="w-full bg-transparent border-2 border-white text-white px-6 py-4 rounded-xl font-medium flex items-center justify-center gap-3"
         >
           <Sparkles className="w-5 h-5" />
           Ver Nossos Modelos
         </button>
         
         <div className="border-t border-white/20 mt-8 pt-6 space-y-2">
-          <div className="flex items-center justify-center gap-2 text-sm">
+          <div className="flex items-center justify-center gap-2 text-sm font-light">
             <CheckCircle className="w-4 h-4 text-green-400" />
             <span>Atendimento Humanizado</span>
           </div>
-          <div className="flex items-center justify-center gap-2 text-sm">
+          <div className="flex items-center justify-center gap-2 text-sm font-light">
             <CheckCircle className="w-4 h-4 text-green-400" />
             <span>Aprovação Antes da Produção</span>
           </div>
