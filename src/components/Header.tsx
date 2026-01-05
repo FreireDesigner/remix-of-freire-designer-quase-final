@@ -13,9 +13,9 @@ const Header = () => {
         </div>
         
         <div className="flex items-center gap-1">
-          <button className="p-1.5 hover:bg-secondary rounded-full transition-colors">
+          <Link to="/" className="p-1.5 hover:bg-secondary rounded-full transition-colors">
             <Home className="w-5 h-5 text-foreground" />
-          </button>
+          </Link>
           
           <button className="p-1.5 hover:bg-secondary rounded-full transition-colors relative">
             <ShoppingCart className="w-5 h-5 text-foreground" />
@@ -43,9 +43,9 @@ const Header = () => {
         <Link to="/producao" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Produção
         </Link>
-        <a href="#" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
+        <Link to="/faca-sua" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Faça a Sua
-        </a>
+        </Link>
         <a href="#" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Conheça a Equipe
         </a>
