@@ -28,17 +28,38 @@ const colors = [
 ];
 
 const collarTypes = [
-  { name: "Gola Redonda", description: "Padrão - Sem custo", price: 0 },
-  { name: "Gola V", description: "+ R$ 7.00/un", price: 7 },
+  { name: "Gola Redonda", description: "Padrão - Sem custo", price: 0, recommended: false },
+  { name: "Gola V", description: "+ R$ 7.00/un", price: 7, recommended: true },
+];
+
+const fabricTypes = [
+  { name: "Thermica (Premium)", description: "Tecido térmico de alta performance", price: 8, priceLabel: "+R$ 8,00" },
+  { name: "DryFit Premium (Padrão)", description: "Tecido esportivo/social com acabamento premium", price: 0, priceLabel: "Incluído", isDefault: true },
+  { name: "Helanca (Econômico)", description: "Tecido leve e confortável", price: -5, priceLabel: "-R$ 5,00" },
+];
+
+const finishingTypes = [
+  { name: "Masculino", icon: "👔" },
+  { name: "Babylook", icon: "👗" },
+];
+
+const discountTiers = [
+  { min: 12, discount: 10, unitPrice: 37.80, bonus: null },
+  { min: 30, discount: 15, unitPrice: 35.70, bonus: null },
+  { min: 50, discount: 20, unitPrice: 33.60, bonus: "+Brinde 1 personalizado" },
+  { min: 80, discount: 22, unitPrice: 32.76, bonus: "+Brinde 2 personalizado" },
 ];
 
 const FacaSua = () => {
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedCollar, setSelectedCollar] = useState(0);
+  const [selectedFabric, setSelectedFabric] = useState(1);
+  const [selectedFinishing, setSelectedFinishing] = useState(0);
+  const [selectedDiscountTier, setSelectedDiscountTier] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [description, setDescription] = useState("");
-  const [showDiscounts, setShowDiscounts] = useState(false);
+  const [showDiscounts, setShowDiscounts] = useState(true);
 
   const basePrice = selectedProduct !== null ? products[selectedProduct].price : 0;
   const collarPrice = collarTypes[selectedCollar].price;
@@ -80,11 +101,9 @@ const FacaSua = () => {
           Sistema inteligente de personalização. Escolha o produto e veja apenas as opções disponíveis para ele.
         </p>
         
-        <div className="bg-amber-400 text-amber-900 rounded-xl px-4 py-3 flex items-center gap-3 max-w-sm mx-auto">
-          <Gift className="w-6 h-6 flex-shrink-0" />
-          <span className="font-bold text-sm">
-            BÔNUS: Logo Personalizada e Exclusiva Grátis!
-          </span>
+        <div className="bg-gradient-to-r from-amber-400 to-yellow-400 text-amber-900 rounded-xl px-4 py-2 flex items-center gap-2 max-w-xs mx-auto shadow-lg">
+          <Gift className="w-5 h-5 flex-shrink-0" />
+          <span className="font-bold text-xs">BÔNUS: Logo Exclusiva Grátis!</span>
         </div>
         
         <WaveDivider variant="blue-to-white" />
@@ -151,54 +170,144 @@ const FacaSua = () => {
           </div>
         </div>
 
-        {/* Step 3: Tipo de Gola */}
+        {/* Tecido Selection */}
         <div className="bg-card rounded-2xl p-4 shadow-sm border border-border">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">3</div>
-            <h2 className="font-bold text-foreground">Tipo de Gola</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-bold text-foreground">ESCOLHA <span className="text-primary">SEU TECIDO</span></h2>
+            <button className="text-primary text-sm font-medium underline">Saiba Mais</button>
           </div>
+          
+          <div className="space-y-3">
+            {fabricTypes.map((fabric, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedFabric(index)}
+                className={`w-full p-4 rounded-xl border-2 text-left transition-all flex justify-between items-center ${
+                  selectedFabric === index
+                    ? "border-primary bg-primary/5"
+                    : "border-border hover:border-primary/50"
+                }`}
+              >
+                <div>
+                  <p className={`font-semibold ${selectedFabric === index ? "text-primary" : "text-foreground"}`}>{fabric.name}</p>
+                  <p className="text-xs text-muted-foreground">{fabric.description}</p>
+                </div>
+                <span className={`font-bold text-sm ${fabric.price > 0 ? "text-foreground" : fabric.price < 0 ? "text-green-600" : "text-primary"}`}>
+                  {fabric.priceLabel}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Acabamento Selection */}
+        <div className="bg-card rounded-2xl p-4 shadow-sm border border-border">
+          <h2 className="font-bold text-foreground mb-3">Acabamento: <span className="text-primary">{finishingTypes[selectedFinishing].name}</span></h2>
+          
+          <div className="grid grid-cols-2 gap-3">
+            {finishingTypes.map((finishing, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedFinishing(index)}
+                className={`p-3 rounded-xl border-2 transition-all flex items-center justify-center gap-2 ${
+                  selectedFinishing === index
+                    ? "border-primary bg-primary/5"
+                    : "border-border hover:border-primary/50"
+                }`}
+              >
+                <span className="text-lg">{finishing.icon}</span>
+                <span className={`font-semibold ${selectedFinishing === index ? "text-primary" : "text-foreground"}`}>{finishing.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Gola Selection - Compact with Images */}
+        <div className="bg-card rounded-2xl p-4 shadow-sm border border-border">
+          <h2 className="font-bold text-foreground mb-3">GOLA: <span className="text-primary">{collarTypes[selectedCollar].name.toUpperCase()}</span></h2>
           
           <div className="grid grid-cols-2 gap-3">
             {collarTypes.map((collar, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedCollar(index)}
-                className={`p-4 rounded-xl border-2 text-left transition-all ${
+                className={`p-3 rounded-xl border-2 transition-all text-center ${
                   selectedCollar === index
                     ? "border-primary bg-primary/5"
+                    : collar.recommended
+                    ? "border-blue-500 border-[3px] bg-blue-50 shadow-md"
                     : "border-border hover:border-primary/50"
                 }`}
               >
-                <div className="flex items-center gap-2 mb-1">
-                  {selectedCollar === index && <Check className="w-4 h-4 text-primary" />}
-                  <span className="font-semibold text-foreground">{collar.name}</span>
+                <div className="w-16 h-16 mx-auto mb-2 bg-muted rounded-full flex items-center justify-center">
+                  <div className={`w-10 h-8 rounded-t-full ${index === 0 ? "border-t-4 border-x-4 border-muted-foreground" : "border-b-4 border-x-4 border-muted-foreground rotate-180"}`} />
                 </div>
+                <p className={`font-bold text-sm ${selectedCollar === index ? "text-primary" : "text-foreground"}`}>
+                  {collar.name.toUpperCase()}
+                </p>
                 <p className="text-xs text-muted-foreground">{collar.description}</p>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Discounts Accordion */}
-        <button
-          onClick={() => setShowDiscounts(!showDiscounts)}
-          className="w-full bg-card rounded-2xl p-4 shadow-sm border border-primary/30 flex items-center justify-between"
-        >
-          <div className="flex items-center gap-3">
-            <Gift className="w-5 h-5 text-primary" />
-            <span className="font-semibold text-foreground text-sm">Descubra descontos e brindes por quantidade</span>
-          </div>
-          <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${showDiscounts ? "rotate-180" : ""}`} />
-        </button>
-        
-        {showDiscounts && (
-          <div className="bg-card rounded-2xl p-4 shadow-sm border border-border space-y-2 text-sm">
-            <p><strong>10-19 peças:</strong> 5% de desconto</p>
-            <p><strong>20-49 peças:</strong> 10% de desconto</p>
-            <p><strong>50-99 peças:</strong> 15% de desconto</p>
-            <p><strong>100+ peças:</strong> 25% de desconto + brindes!</p>
-          </div>
-        )}
+        {/* Discounts Section - Redesigned */}
+        <div className="bg-card rounded-2xl shadow-sm border border-primary/30 overflow-hidden">
+          <button
+            onClick={() => setShowDiscounts(!showDiscounts)}
+            className="w-full p-4 flex items-center justify-between bg-primary/5"
+          >
+            <div className="flex items-center gap-3">
+              <Gift className="w-5 h-5 text-primary" />
+              <span className="font-bold text-foreground">Descubra descontos e brindes por quantidade</span>
+            </div>
+            <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${showDiscounts ? "rotate-180" : ""}`} />
+          </button>
+          
+          {showDiscounts && (
+            <div className="p-4 space-y-3">
+              <p className="text-sm text-center text-muted-foreground mb-4">
+                Selecione uma opção e ganhe descontos progressivos + brindes exclusivos!
+              </p>
+              
+              {discountTiers.map((tier, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedDiscountTier(selectedDiscountTier === index ? null : index)}
+                  className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                    selectedDiscountTier === index
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                        selectedDiscountTier === index ? "border-primary bg-primary" : "border-muted-foreground"
+                      }`}>
+                        {selectedDiscountTier === index && <Check className="w-3 h-3 text-white" />}
+                      </div>
+                      <span className="font-bold text-foreground">{tier.min}+ unidades</span>
+                    </div>
+                    <span className="font-bold text-primary">{tier.discount}% OFF</span>
+                  </div>
+                  
+                  <div className="flex justify-between text-sm text-muted-foreground ml-8">
+                    <span>R$ {tier.unitPrice.toFixed(2)}/un</span>
+                    <span>Total: R$ {(tier.unitPrice * tier.min).toFixed(2)}</span>
+                  </div>
+                  
+                  {tier.bonus && (
+                    <div className="flex items-center gap-2 mt-2 ml-8 text-amber-600">
+                      <Sparkles className="w-4 h-4" />
+                      <span className="text-sm font-medium">{tier.bonus}</span>
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Step 4: Quantidade Estimada */}
         <div className="bg-card rounded-2xl p-4 shadow-sm border border-border">
