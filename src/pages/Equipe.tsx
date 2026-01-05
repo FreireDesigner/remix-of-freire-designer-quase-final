@@ -286,6 +286,11 @@ const Equipe = () => {
         </div>
       </section>
 
+      {/* Wave before Stats */}
+      <div className="relative">
+        <WaveDivider variant="white-to-blue" />
+      </div>
+
       {/* Stats Counter Section */}
       <section ref={statsRef} className="bg-primary px-4 py-12">
         <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
@@ -300,6 +305,36 @@ const Equipe = () => {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Wave after Stats */}
+      <div className="relative">
+        <WaveDivider variant="blue-to-white" />
+      </div>
+
+      {/* Review CTA */}
+      <section className="px-4 py-8 text-center bg-background">
+        <p className="text-muted-foreground font-light mb-4">
+          Gostou do nosso trabalho? Deixe sua avaliação!
+        </p>
+        <div className="flex justify-center gap-4">
+          <a 
+            href="https://instagram.com/fdesigner" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
+          >
+            Avaliar no Instagram
+          </a>
+          <a 
+            href="https://tiktok.com/@fdesigner" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-black text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
+          >
+            Avaliar no TikTok
+          </a>
         </div>
       </section>
 
