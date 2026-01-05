@@ -1,4 +1,5 @@
 import { Home, ShoppingCart, User, Menu, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo-freire-designer.png";
 
 const Header = () => {
@@ -39,9 +40,9 @@ const Header = () => {
           Todos os Modelos
           <ChevronDown className="w-3 h-3" />
         </button>
-        <a href="#" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
+        <Link to="/producao" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Produção
-        </a>
+        </Link>
         <a href="#" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Faça a Sua
         </a>
