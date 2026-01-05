@@ -39,8 +39,8 @@ const fabricTypes = [
 ];
 
 const finishingTypes = [
-  { name: "Masculino", icon: "👔" },
-  { name: "Babylook", icon: "👗" },
+  { name: "Masculino" },
+  { name: "Babylook" },
 ];
 
 const discountTiers = [
@@ -53,7 +53,7 @@ const discountTiers = [
 const FacaSua = () => {
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [selectedColor, setSelectedColor] = useState(0);
-  const [selectedCollar, setSelectedCollar] = useState(0);
+  const [selectedCollar, setSelectedCollar] = useState<number | null>(null);
   const [selectedFabric, setSelectedFabric] = useState(1);
   const [selectedFinishing, setSelectedFinishing] = useState(0);
   const [selectedDiscountTier, setSelectedDiscountTier] = useState<number | null>(null);
@@ -62,14 +62,15 @@ const FacaSua = () => {
   const [showDiscounts, setShowDiscounts] = useState(true);
 
   const basePrice = selectedProduct !== null ? products[selectedProduct].price : 0;
-  const collarPrice = collarTypes[selectedCollar].price;
-  const unitPrice = basePrice + collarPrice;
+  const collarPrice = selectedCollar !== null ? collarTypes[selectedCollar].price : 0;
+  const fabricPrice = fabricTypes[selectedFabric].price;
+  const unitPrice = basePrice + collarPrice + fabricPrice;
   const totalPrice = unitPrice * quantity;
 
   const handleWhatsAppSubmit = () => {
     const product = selectedProduct !== null ? products[selectedProduct].name : "Não selecionado";
     const color = colors[selectedColor].name;
-    const collar = collarTypes[selectedCollar].name;
+    const collar = selectedCollar !== null ? collarTypes[selectedCollar].name : "Não selecionado";
     
     const message = `*Pedido Personalizado FDesigner*%0A%0A` +
       `*Produto:* ${product}%0A` +
@@ -101,9 +102,11 @@ const FacaSua = () => {
           Sistema inteligente de personalização. Escolha o produto e veja apenas as opções disponíveis para ele.
         </p>
         
-        <div className="bg-gradient-to-r from-amber-400 to-yellow-400 text-amber-900 rounded-xl px-4 py-2 flex items-center gap-2 max-w-xs mx-auto shadow-lg">
-          <Gift className="w-5 h-5 flex-shrink-0" />
-          <span className="font-bold text-xs">BÔNUS: Logo Exclusiva Grátis!</span>
+        <div className="relative inline-block">
+          <div className="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-blue-900 rounded-full px-6 py-3 flex items-center gap-3 shadow-xl">
+            <Sparkles className="w-5 h-5 flex-shrink-0" />
+            <span className="font-bold text-sm">BÔNUS: Logo Personalizada e Exclusiva Grátis!</span>
+          </div>
         </div>
         
         <WaveDivider variant="blue-to-white" />
@@ -185,6 +188,8 @@ const FacaSua = () => {
                 className={`w-full p-4 rounded-xl border-2 text-left transition-all flex justify-between items-center ${
                   selectedFabric === index
                     ? "border-primary bg-primary/5"
+                    : index === 0
+                    ? "border-indigo-500 border-[3px] hover:bg-indigo-50"
                     : "border-border hover:border-primary/50"
                 }`}
               >
@@ -215,37 +220,36 @@ const FacaSua = () => {
                     : "border-border hover:border-primary/50"
                 }`}
               >
-                <span className="text-lg">{finishing.icon}</span>
                 <span className={`font-semibold ${selectedFinishing === index ? "text-primary" : "text-foreground"}`}>{finishing.name}</span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Gola Selection - Compact with Images */}
         <div className="bg-card rounded-2xl p-4 shadow-sm border border-border">
-          <h2 className="font-bold text-foreground mb-3">GOLA: <span className="text-primary">{collarTypes[selectedCollar].name.toUpperCase()}</span></h2>
+          <h2 className="font-bold text-foreground mb-3">GOLA: <span className="text-primary">{selectedCollar !== null ? collarTypes[selectedCollar].name.toUpperCase() : "SELECIONE"}</span></h2>
           
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             {collarTypes.map((collar, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedCollar(index)}
-                className={`p-3 rounded-xl border-2 transition-all text-center ${
+                className={`p-4 rounded-xl border-2 transition-all text-center ${
                   selectedCollar === index
                     ? "border-primary bg-primary/5"
                     : collar.recommended
-                    ? "border-blue-500 border-[3px] bg-blue-50 shadow-md"
+                    ? "border-blue-500 border-[3px] bg-blue-50/50 shadow-md"
                     : "border-border hover:border-primary/50"
                 }`}
               >
-                <div className="w-16 h-16 mx-auto mb-2 bg-muted rounded-full flex items-center justify-center">
-                  <div className={`w-10 h-8 rounded-t-full ${index === 0 ? "border-t-4 border-x-4 border-muted-foreground" : "border-b-4 border-x-4 border-muted-foreground rotate-180"}`} />
+                <div className="w-20 h-20 mx-auto mb-3 bg-muted/50 rounded-xl flex items-center justify-center border border-border">
+                  {/* Placeholder para imagem da gola */}
+                  <span className="text-xs text-muted-foreground">Imagem</span>
                 </div>
                 <p className={`font-bold text-sm ${selectedCollar === index ? "text-primary" : "text-foreground"}`}>
                   {collar.name.toUpperCase()}
                 </p>
-                <p className="text-xs text-muted-foreground">{collar.description}</p>
+                <p className="text-xs text-muted-foreground mt-1">{collar.description}</p>
               </button>
             ))}
           </div>
@@ -298,7 +302,7 @@ const FacaSua = () => {
                   </div>
                   
                   {tier.bonus && (
-                    <div className="flex items-center gap-2 mt-2 ml-8 text-amber-600">
+                    <div className="flex items-center gap-2 mt-2 ml-8 text-green-600">
                       <Sparkles className="w-4 h-4" />
                       <span className="text-sm font-medium">{tier.bonus}</span>
                     </div>
@@ -369,7 +373,7 @@ const FacaSua = () => {
           </div>
           
           <div className="bg-primary/10 rounded-xl p-3 mb-4 text-sm text-center">
-            <strong className="text-foreground">Nossa equipe criará a arte.</strong>{" "}
+            <span className="text-foreground">Nossa equipe criará a arte.</span>{" "}
             <span className="text-muted-foreground">Descreva sua ideia em detalhes.</span>
           </div>
           
@@ -379,7 +383,7 @@ const FacaSua = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Descreva em detalhes como você imagina sua arte. Exemplo: Nome do time em fonte bold, cores específicas, elementos gráficos, posicionamento, etc."
-              className="w-full p-3 border border-border rounded-xl bg-background text-foreground placeholder:text-muted-foreground resize-none h-32 outline-none focus:border-primary transition-colors"
+              className="w-full p-3 border border-border rounded-xl bg-background text-foreground placeholder:text-muted-foreground/40 resize-none h-32 outline-none focus:border-primary transition-colors"
             />
           </div>
           
