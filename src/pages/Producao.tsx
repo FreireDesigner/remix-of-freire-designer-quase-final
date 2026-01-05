@@ -1,7 +1,8 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { ShoppingCart, Palette, Monitor, Printer, Scissors, Package, CheckCircle, MessageSquare, Rocket, ArrowRight, ArrowDown, Camera } from "lucide-react";
+import { ShoppingCart, Palette, Monitor, Printer, Scissors, Package, CheckCircle, MessageSquare, Rocket, ArrowRight, ArrowDown, Camera, ChevronDown, ChevronUp } from "lucide-react";
 
 const productionSteps = [
   {
@@ -102,6 +103,16 @@ const benefits = [
 ];
 
 const Producao = () => {
+  const [expandedSteps, setExpandedSteps] = useState<number[]>([]);
+
+  const toggleStep = (index: number) => {
+    setExpandedSteps(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -149,11 +160,14 @@ const Producao = () => {
                 
                 <div className="flex items-center gap-2">
                   <step.icon className="w-5 h-5 text-white/80" />
-                  <button className={`${step.numberBg} w-10 h-10 rounded-xl flex items-center justify-center`}>
-                    {index < productionSteps.length - 1 ? (
-                      <ArrowDown className="w-5 h-5 text-white" />
+                  <button 
+                    onClick={() => toggleStep(index)}
+                    className={`${step.numberBg} w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300`}
+                  >
+                    {expandedSteps.includes(index) ? (
+                      <ChevronUp className="w-5 h-5 text-white" />
                     ) : (
-                      <ArrowRight className="w-5 h-5 text-white" />
+                      <ChevronDown className="w-5 h-5 text-white" />
                     )}
                   </button>
                 </div>
@@ -163,18 +177,21 @@ const Producao = () => {
               <p className="text-white/80 text-sm font-semibold mb-2">{step.subtitle}</p>
               <p className="text-white/90 text-sm leading-relaxed mb-4">{step.description}</p>
               
-              {/* Image Gallery inside card */}
-              <div className="grid grid-cols-3 gap-2 mt-4">
-                {[1, 2, 3].map((imgIndex) => (
-                  <div key={imgIndex} className="bg-white/20 rounded-xl overflow-hidden cursor-pointer hover:bg-white/30 transition-colors">
-                    <div className="aspect-square flex flex-col items-center justify-center">
-                      <Camera className="w-6 h-6 text-white/60 mb-1" />
+              {/* Image Gallery - Collapsible */}
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedSteps.includes(index) ? 'max-h-[600px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                <div className="space-y-3">
+                  {[1, 2, 3].map((imgIndex) => (
+                    <div key={imgIndex} className="bg-white/20 rounded-xl overflow-hidden cursor-pointer hover:bg-white/30 transition-colors">
+                      <div className="aspect-video flex flex-col items-center justify-center">
+                        <Camera className="w-10 h-10 text-white/60 mb-2" />
+                        <span className="text-sm text-white/60">Adicione imagem aqui</span>
+                      </div>
+                      <div className="bg-white/10 px-3 py-2">
+                        <span className="text-sm font-medium text-white/80 block text-center">Título da Imagem {imgIndex}</span>
+                      </div>
                     </div>
-                    <div className="bg-white/10 px-2 py-1.5">
-                      <span className="text-xs font-medium text-white/80 block text-center truncate">Título {imgIndex}</span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -185,7 +202,7 @@ const Producao = () => {
       {/* Why Choose Us Section */}
       <section className="py-12 px-4 bg-foreground">
         <span className="inline-flex items-center gap-2 bg-[hsl(220,20%,25%)] text-white/90 text-sm font-semibold px-4 py-2 rounded-full mb-6 mx-auto">
-          ✨ POR QUE ESCOLHER A FDESIGNER
+          POR QUE ESCOLHER A FDESIGNER?
         </span>
         
         <h2 className="text-2xl font-extrabold text-background text-center mb-4">
