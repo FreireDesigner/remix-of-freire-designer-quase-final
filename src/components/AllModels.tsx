@@ -4,12 +4,12 @@ import ProductCard from "./ProductCard";
 const filters = ["Todos", "Novos", "Em Alta", "Promoções"];
 
 const products = [
-  { name: "Camiseta Interclasse 2024", price: 45.0, originalPrice: 55.0, discount: 18, isNew: true },
-  { name: "Camiseta Personalizada Time", price: 52.0, originalPrice: 65.0, discount: 20, isExclusive: true },
-  { name: "Camiseta Gospel Especial", price: 48.0, originalPrice: 58.0, discount: 17, isNew: true },
-  { name: "Camiseta Desbravadores", price: 55.0, originalPrice: 70.0, discount: 21 },
-  { name: "Camiseta Evento Premium", price: 42.0, originalPrice: 50.0, discount: 16, isExclusive: true },
-  { name: "Camiseta Personalizada Art", price: 50.0, originalPrice: 62.0, discount: 19, isNew: true },
+  { name: "Camiseta Interclasse 2024", price: 45.0, originalPrice: 55.0, discount: 18, isNew: true, isExclusive: false },
+  { name: "Modelo Exclusivo Time FD", price: 79.9, originalPrice: 99.9, discount: 20, isNew: false, isExclusive: true },
+  { name: "Camiseta Gospel Especial", price: 48.0, originalPrice: 58.0, discount: 17, isNew: true, isExclusive: false },
+  { name: "Camiseta Desbravadores", price: 55.0, originalPrice: 70.0, discount: 21, isNew: false, isExclusive: false },
+  { name: "Arte Exclusiva Premium", price: 89.9, originalPrice: 109.9, discount: 16, isNew: false, isExclusive: true },
+  { name: "Camiseta Personalizada Art", price: 50.0, originalPrice: 62.0, discount: 19, isNew: true, isExclusive: false },
 ];
 
 const AllModels = () => {
@@ -41,15 +41,19 @@ const AllModels = () => {
       {/* Products Grid */}
       <div className="grid grid-cols-2 gap-3">
         {products.map((product, index) => (
-          <ProductCard
+          <div 
             key={index}
-            name={product.name}
-            price={product.price}
-            originalPrice={product.originalPrice}
-            discount={product.discount}
-            isNew={product.isNew}
-            isExclusive={product.isExclusive}
-          />
+            className={product.isExclusive ? 'rounded-xl border-[3px] border-amber-400' : ''}
+          >
+            <ProductCard
+              name={product.name}
+              price={product.price}
+              originalPrice={product.originalPrice}
+              discount={product.discount}
+              isNew={product.isNew}
+              isExclusive={product.isExclusive}
+            />
+          </div>
         ))}
       </div>
 
