@@ -14,9 +14,13 @@ interface FAQCategory {
   title: string;
   questions: {
     question: string;
-    answer: string;
+    answer: React.ReactNode;
   }[];
 }
+
+const BlueText = ({ children }: { children: React.ReactNode }) => (
+  <span className="text-primary font-semibold">{children}</span>
+);
 
 const faqCategories: FAQCategory[] = [
   {
@@ -24,19 +28,54 @@ const faqCategories: FAQCategory[] = [
     questions: [
       {
         question: "Como faço um pedido?",
-        answer: "Para fazer um pedido, basta entrar em contato conosco pelo WhatsApp ou e-mail. Nossa equipe irá te orientar em todo o processo, desde a escolha do modelo até a finalização do pedido."
+        answer: (
+          <div className="space-y-3">
+            <p>É simples.</p>
+            <p>Você escolhe um <strong>modelo disponível no site</strong> e inicia a personalização.</p>
+            <p>Se for um pedido único, você pode inserir todas as informações desejadas.</p>
+            <p>No carrinho, é possível adicionar:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2">
+              <li>Nome personalizado</li>
+              <li>Número nas costas</li>
+              <li>Informar se deseja o modelo exatamente como está ou com alguma edição</li>
+            </ul>
+            <p>Como bônus, já incluímos <strong>nome personalizado</strong>, <strong>logo personalizado</strong> e <strong>número</strong> sem custo adicional.</p>
+            <p>Caso queira outras alterações na arte, nosso designer entra em contato para alinhar tudo com você antes da produção.</p>
+            <p className="pt-2">👉 Clique em <BlueText>Monte a sua</BlueText> e comece agora.</p>
+          </div>
+        )
       },
       {
         question: "Quanto tempo demora para receber o orçamento?",
-        answer: "Nossos orçamentos são enviados em até 24 horas úteis após o recebimento de todas as informações necessárias sobre seu projeto."
+        answer: (
+          <div className="space-y-3">
+            <p>O orçamento é feito <strong>diretamente no site</strong>.</p>
+            <p>Você já visualiza valores, opções e detalhes antes mesmo de finalizar o pedido.</p>
+            <p>Sem espera, sem surpresa.</p>
+            <p className="pt-2">👉 <BlueText>Escolha um modelo</BlueText> e veja o valor na hora.</p>
+          </div>
+        )
       },
       {
-        question: "Qual o valor mínimo de pedido?",
-        answer: "O valor mínimo de pedido varia de acordo com o tipo de produto. Entre em contato conosco para mais informações sobre seu projeto específico."
+        question: "Existe valor mínimo ou quantidade mínima?",
+        answer: (
+          <div className="space-y-3">
+            <p>Não existe valor mínimo nem quantidade mínima.</p>
+            <p>Você pode pedir <strong>1 peça ou quantas quiser</strong>.</p>
+            <p>E quanto maior a quantidade, maiores são os <strong>descontos e brindes</strong> que aparecem automaticamente no site.</p>
+            <p className="pt-2">👉 Veja as promoções disponíveis em cada modelo.</p>
+          </div>
+        )
       },
       {
         question: "Fazem orçamento sem compromisso?",
-        answer: "Sim! Todos os nossos orçamentos são gratuitos e sem compromisso. Você pode solicitar quantos orçamentos precisar antes de tomar sua decisão."
+        answer: (
+          <div className="space-y-3">
+            <p>Sim.</p>
+            <p>Você pode simular seu pedido, ver todos os valores e só confirmar quando tiver certeza.</p>
+            <p className="pt-2">👉 <BlueText>Monte seu pedido</BlueText> sem compromisso.</p>
+          </div>
+        )
       },
     ]
   },
@@ -44,20 +83,45 @@ const faqCategories: FAQCategory[] = [
     title: "Artes e Criação",
     questions: [
       {
-        question: "Quantas revisões estão incluídas?",
-        answer: "Oferecemos revisões ilimitadas até que você fique completamente satisfeito com o resultado. Nosso objetivo é entregar exatamente o que você imaginou."
+        question: "Quantas revisões de arte estão incluídas?",
+        answer: (
+          <div className="space-y-3">
+            <p>Estão incluídas <strong>2 revisões</strong>.</p>
+            <p>Você solicita a arte, visualiza o mockup e pode pedir até duas edições antes da aprovação final.</p>
+            <p className="pt-2">👉 Acompanhe todo o processo com o designer.</p>
+          </div>
+        )
       },
       {
         question: "Vocês criam personagens do zero?",
-        answer: "Sim! Nossa equipe de designers é especializada em criar personagens exclusivos e únicos para seu projeto, desde mascotes até figuras personalizadas."
+        answer: (
+          <div className="space-y-3">
+            <p>Sim.</p>
+            <p>Criamos <strong>personagens do zero</strong> e artes totalmente exclusivas, desenvolvidas de acordo com a sua ideia.</p>
+            <p className="pt-2">👉 Acesse <BlueText>Faça a Sua</BlueText> e envie sua ideia agora.</p>
+          </div>
+        )
       },
       {
         question: "Posso usar artes prontas como referência?",
-        answer: "Claro! Você pode enviar referências de artes que goste para que nossa equipe crie algo inspirado, respeitando sempre os direitos autorais."
+        answer: (
+          <div className="space-y-3">
+            <p>Pode sim.</p>
+            <p>Você pode enviar artes prontas, referências, ou até pedir para unir elementos de camisetas diferentes.</p>
+            <p>Tudo é feito do seu jeito.</p>
+            <p className="pt-2">👉 Envie suas referências e personalize.</p>
+          </div>
+        )
       },
       {
-        question: "Em quais formatos vocês entregam os arquivos?",
-        answer: "Entregamos os arquivos em diversos formatos, incluindo PNG, PDF, AI, CDR, dependendo da sua necessidade e do tipo de impressão que será utilizada."
+        question: "Em quais formatos vocês entregam a arte?",
+        answer: (
+          <div className="space-y-3">
+            <p>A arte é entregue em <strong>mockup realista</strong> para aprovação.</p>
+            <p>Caso queira adquirir a arte separadamente, também realizamos a venda do arquivo.</p>
+            <p className="pt-2">👉 Consulte essa opção com o designer.</p>
+          </div>
+        )
       },
     ]
   },
@@ -66,19 +130,40 @@ const faqCategories: FAQCategory[] = [
     questions: [
       {
         question: "Quais formas de pagamento aceitam?",
-        answer: "Aceitamos PIX, cartão de crédito (em até 12x), boleto bancário e transferência. O pagamento pode ser dividido conforme combinado."
-      },
-      {
-        question: "Quando devo pagar?",
-        answer: "Trabalhamos com 50% de entrada para iniciar o projeto e 50% na entrega final. Condições especiais podem ser negociadas para pedidos maiores."
+        answer: (
+          <div className="space-y-3">
+            <p>As formas de pagamento disponíveis variam conforme o modelo, mas no geral aceitamos:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2">
+              <li>PIX</li>
+              <li>Débito</li>
+              <li>Crédito</li>
+              <li>PicPay</li>
+              <li>Mercado Pago</li>
+            </ul>
+            <p>O pagamento é realizado <strong>antes da confirmação do pedido</strong>.</p>
+            <p className="pt-2">👉 <BlueText>Finalize seu pedido</BlueText> com segurança.</p>
+          </div>
+        )
       },
       {
         question: "Qual o prazo de entrega?",
-        answer: "O prazo varia de acordo com a complexidade do projeto. Em média, projetos simples levam de 3 a 5 dias úteis, e projetos mais complexos de 7 a 15 dias úteis."
+        answer: (
+          <div className="space-y-3">
+            <p>O prazo padrão é de até <strong>7 dias úteis de produção</strong> + <strong>3 dias de envio</strong>.</p>
+            <p>Caso a arte seja criada do zero, acrescentam-se até <strong>2 dias úteis</strong> ao prazo de produção.</p>
+            <p className="pt-2">👉 Veja o prazo detalhado antes de <BlueText>fechar o pedido</BlueText>.</p>
+          </div>
+        )
       },
       {
-        question: "Oferecem desconto para grupos grandes?",
-        answer: "Sim! Oferecemos descontos progressivos para pedidos em grandes quantidades. Quanto maior o pedido, maior o desconto aplicado."
+        question: "Oferecem descontos para grupos grandes?",
+        answer: (
+          <div className="space-y-3">
+            <p>Sim.</p>
+            <p>Os descontos e brindes aparecem automaticamente de acordo com a quantidade escolhida.</p>
+            <p className="pt-2">👉 Simule seu pedido e veja as promoções ativas.</p>
+          </div>
+        )
       },
     ]
   },
@@ -86,16 +171,35 @@ const faqCategories: FAQCategory[] = [
     title: "Impressão e Produção",
     questions: [
       {
-        question: "Vocês imprimem as camisetas?",
-        answer: "Não realizamos a impressão diretamente, mas trabalhamos com parceiros de confiança que garantem a melhor qualidade de impressão para seus projetos."
+        question: "Como funciona a impressão e produção?",
+        answer: (
+          <div className="space-y-3">
+            <p>Nós cuidamos de todo o processo.</p>
+            <p>Primeiro realizamos a <strong>impressão da arte</strong>, depois fazemos a <strong>confecção e costura da camiseta</strong>, garantindo acabamento e qualidade.</p>
+            <p className="pt-2">👉 Conheça nosso processo de produção.</p>
+          </div>
+        )
       },
       {
         question: "Os arquivos servem para qualquer tipo de impressão?",
-        answer: "Sim! Preparamos os arquivos de acordo com o tipo de impressão desejada (sublimação, serigrafia, DTF, etc.), garantindo a melhor qualidade final."
+        answer: (
+          <div className="space-y-3">
+            <p>Nossos arquivos são exclusivos.</p>
+            <p>Porém, caso deseje, vendemos a arte separadamente para uso em outras gráficas também.</p>
+            <p className="pt-2">👉 Consulte valores para compra da arte.</p>
+          </div>
+        )
       },
       {
-        question: "Vocês ajudam a escolher o tipo de tecido/impressão?",
-        answer: "Com certeza! Nossa equipe está preparada para orientar sobre os melhores tecidos e tipos de impressão para cada projeto, considerando durabilidade, custo e resultado final."
+        question: "Vocês ajudam a escolher o tecido e a impressão?",
+        answer: (
+          <div className="space-y-3">
+            <p>Sim.</p>
+            <p>Ajudamos você a escolher o <strong>tecido ideal</strong>.</p>
+            <p>O tipo de impressão já está definido em cada modelo e explicado detalhadamente no site.</p>
+            <p className="pt-2">👉 Acesse a página de <BlueText>Tecidos</BlueText> para saber mais.</p>
+          </div>
+        )
       },
     ]
   },
@@ -104,15 +208,47 @@ const faqCategories: FAQCategory[] = [
     questions: [
       {
         question: "A arte fica exclusiva para mim?",
-        answer: "Sim! Todas as artes criadas são exclusivas e não serão revendidas ou utilizadas para outros clientes. O design é completamente seu."
+        answer: (
+          <div className="space-y-3">
+            <p>Por padrão, os modelos criados podem ser exibidos em nosso site.</p>
+            <p>Caso queira a arte <strong>100% exclusiva</strong>, isso é possível, com um valor adicional.</p>
+            <p className="pt-2">👉 <BlueText>Fale com a gente</BlueText> para solicitar exclusividade.</p>
+          </div>
+        )
       },
       {
         question: "Posso usar a arte em outros produtos?",
-        answer: "Sim! Após a finalização do projeto, você tem total liberdade para usar a arte em qualquer produto ou material que desejar."
+        answer: (
+          <div className="space-y-3">
+            <p>Sim.</p>
+            <p>Você pode utilizar a arte em outros produtos sem problema.</p>
+            <p className="pt-2">👉 Consulte condições com o designer.</p>
+          </div>
+        )
       },
       {
-        question: "Vocês assinam as artes?",
-        answer: "Não inserimos assinaturas ou marcas d'água nas artes finais. O arquivo entregue é limpo e pronto para uso profissional."
+        question: "A arte é assinada?",
+        answer: (
+          <div className="space-y-3">
+            <p>Entregamos a arte com um <strong>logo minimalista</strong>, discreto e sem chamar atenção.</p>
+            <p>Caso prefira remover ou alterar essa assinatura, isso pode ser feito mediante valor adicional.</p>
+            <p className="pt-2">👉 Personalize todos os detalhes do seu projeto.</p>
+          </div>
+        )
+      },
+    ]
+  },
+  {
+    title: "Ainda tem dúvidas?",
+    questions: [
+      {
+        question: "Qualquer dúvida?",
+        answer: (
+          <div className="space-y-3">
+            <p>Se ainda restar alguma dúvida, basta clicar em <BlueText>Fale Conosco</BlueText> e falar diretamente com a equipe.</p>
+            <p className="pt-2">👉 <BlueText>Fale com a gente agora mesmo.</BlueText></p>
+          </div>
+        )
       },
     ]
   },
