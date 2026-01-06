@@ -52,6 +52,12 @@ const Header = () => {
         <Link to="/feedbacks" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Feedbacks
         </Link>
+        <Link to="/perguntas-frequentes" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
+          Perguntas Frequentes
+        </Link>
+        <Link to="/central-atendimento" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
+          Central de Atendimento
+        </Link>
       </nav>
     </header>
   );

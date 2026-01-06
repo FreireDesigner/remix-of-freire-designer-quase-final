@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Sparkles, ChevronDown, Crown, MessageCircle, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -96,22 +96,22 @@ const ModeloCard = ({ modelo }: { modelo: Modelo }) => (
       )}
       {modelo.isExclusive && (
         <div className="absolute top-3 right-3 bg-amber-400 w-8 h-8 rounded-full flex items-center justify-center">
-          <Crown className="w-4 h-4 text-white" />
+          <Crown className="w-4 h-4 text-black fill-black" />
         </div>
       )}
     </div>
     
     {/* Content */}
     <div className="p-3">
-      <span className="text-xs text-muted-foreground uppercase tracking-wide">
-        {modelo.categoria}{modelo.isExclusive && " • EXCLUSIVO"}
+      <span className="text-[10px] text-muted-foreground uppercase tracking-wide whitespace-nowrap">
+        {modelo.categoria}{modelo.isExclusive && " • EXCL."}
       </span>
       <h3 className="font-semibold text-foreground mt-1 text-sm">{modelo.nome}</h3>
       <p className="text-xs text-muted-foreground font-light truncate">{modelo.descricao}</p>
       
-      <div className="flex items-center gap-2 mt-2">
-        <span className="text-lg font-bold text-foreground">R$ {modelo.preco.toFixed(2).replace('.', ',')}</span>
+      <div className="flex flex-col mt-2">
         <span className="text-xs text-muted-foreground line-through">R$ {modelo.precoOriginal.toFixed(2).replace('.', ',')}</span>
+        <span className="text-lg font-bold text-foreground">R$ {modelo.preco.toFixed(2).replace('.', ',')}</span>
       </div>
       
       <button className={`w-full mt-3 py-2.5 rounded-lg font-medium text-sm transition-colors ${
@@ -124,6 +124,82 @@ const ModeloCard = ({ modelo }: { modelo: Modelo }) => (
     </div>
   </div>
 );
+
+// Continuous Carousel Component
+const ContinuousCarousel = ({ modelos }: { modelos: Modelo[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Duplicate items for seamless loop
+  const duplicatedModelos = [...modelos, ...modelos, ...modelos];
+  
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+    
+    let animationId: number;
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5;
+    
+    const animate = () => {
+      if (!isHovered && scrollContainer) {
+        scrollPosition += scrollSpeed;
+        const itemWidth = 200; // w-48 = 192px + gap
+        const totalWidth = modelos.length * itemWidth;
+        
+        if (scrollPosition >= totalWidth) {
+          scrollPosition = 0;
+        }
+        
+        scrollContainer.scrollLeft = scrollPosition;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animationId = requestAnimationFrame(animate);
+    
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [isHovered, modelos.length]);
+  
+  return (
+    <div 
+      ref={scrollRef}
+      className="flex gap-4 overflow-x-auto hide-scrollbar pb-4"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {duplicatedModelos.map((modelo, index) => (
+        <div key={`${modelo.id}-${index}`} className="flex-shrink-0 w-48">
+          <div className={`bg-card rounded-2xl overflow-hidden shadow-sm ${modelo.isExclusive ? 'ring-2 ring-amber-400' : ''}`}>
+            <div className="relative h-40 bg-gray-100 flex items-center justify-center">
+              <span className="text-gray-400 text-xs">Imagem</span>
+              {modelo.isNew && (
+                <span className="absolute top-2 left-2 bg-primary text-white text-[10px] font-medium px-2 py-0.5 rounded-full">
+                  Novo
+                </span>
+              )}
+              {modelo.isExclusive && (
+                <div className="absolute top-2 right-2 bg-amber-400 w-6 h-6 rounded-full flex items-center justify-center">
+                  <Crown className="w-3 h-3 text-black fill-black" />
+                </div>
+              )}
+            </div>
+            <div className="p-3">
+              <span className="text-[10px] text-muted-foreground uppercase whitespace-nowrap">{modelo.categoria}</span>
+              <h3 className="font-semibold text-foreground text-sm truncate">{modelo.nome}</h3>
+              <div className="flex flex-col mt-1">
+                <span className="text-[10px] text-muted-foreground line-through">R$ {modelo.precoOriginal.toFixed(2).replace('.', ',')}</span>
+                <span className="text-base font-bold text-foreground">R$ {modelo.preco.toFixed(2).replace('.', ',')}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const TodosModelos = () => {
   const [tipoSelecionado, setTipoSelecionado] = useState<CategoryType>("Sublimações");
@@ -211,52 +287,30 @@ const TodosModelos = () => {
           Os favoritos dos nossos clientes em {tipoSelecionado.toLowerCase()}
         </p>
         
-        {/* Featured Carousel */}
-        <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-4">
-          {modelos.slice(0, 6).map((modelo) => (
-            <div key={modelo.id} className="flex-shrink-0 w-44">
-              <div className={`bg-card rounded-2xl overflow-hidden shadow-sm ${modelo.isExclusive ? 'ring-2 ring-amber-400' : ''}`}>
-                <div className="relative h-36 bg-gray-100 flex items-center justify-center">
-                  <span className="text-gray-400 text-xs">Imagem</span>
-                  {modelo.isNew && (
-                    <span className="absolute top-2 left-2 bg-primary text-white text-[10px] font-medium px-2 py-0.5 rounded-full">
-                      Novo
-                    </span>
-                  )}
-                  {modelo.isExclusive && (
-                    <div className="absolute top-2 right-2 bg-amber-400 w-6 h-6 rounded-full flex items-center justify-center">
-                      <Crown className="w-3 h-3 text-white" />
-                    </div>
-                  )}
-                </div>
-                <div className="p-2">
-                  <span className="text-[10px] text-muted-foreground uppercase">{modelo.categoria}</span>
-                  <h3 className="font-semibold text-foreground text-xs truncate">{modelo.nome}</h3>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Featured Continuous Carousel */}
+        <ContinuousCarousel modelos={modelos.slice(0, 8)} />
       </section>
 
       {/* Categories with Models */}
-      {categorias.map((categoria) => {
+      {categorias.map((categoria, catIndex) => {
         const modelosCategoria = getModelosPorCategoria(categoria);
         const visibleCount = getVisibleCount(categoria);
         const hasMore = modelosCategoria.length > visibleCount;
 
         return (
-          <section key={categoria} className="px-4 py-6">
-            {/* Ver Mais Modelos Button */}
-            <div className="flex justify-center mb-6">
-              <button className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium">
-                Ver Mais Modelos
-                <ChevronDown className="w-5 h-5" />
-              </button>
-            </div>
+          <section key={categoria} className="px-4 py-4">
+            {/* Ver Mais Modelos Button - only between categories */}
+            {catIndex > 0 && (
+              <div className="flex justify-center mb-4">
+                <button className="inline-flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-full font-medium text-sm">
+                  Ver Mais Modelos
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </div>
+            )}
 
             <h2 className="text-2xl font-bold text-foreground mb-2">{categoria}</h2>
-            <p className="text-muted-foreground font-light mb-6">Explore nossa coleção exclusiva</p>
+            <p className="text-muted-foreground font-light mb-4">Explore nossa coleção exclusiva</p>
             
             <div className="grid grid-cols-2 gap-3">
               {modelosCategoria.slice(0, visibleCount).map((modelo) => (
@@ -267,7 +321,7 @@ const TodosModelos = () => {
             {hasMore && (
               <button
                 onClick={() => handleShowMore(categoria)}
-                className="w-full mt-6 py-3 border-2 border-primary text-primary rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-colors"
+                className="w-full mt-4 py-3 border-2 border-primary text-primary rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-colors"
               >
                 Mostrar mais
                 <ChevronDown className="w-4 h-4" />
@@ -278,7 +332,7 @@ const TodosModelos = () => {
       })}
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-b from-primary to-blue-700 text-white px-4 py-12 text-center">
+      <section className="bg-gradient-to-b from-primary to-blue-700 text-white px-4 py-12 text-center mt-6">
         <div className="w-16 h-16 bg-white/20 rounded-2xl mx-auto mb-6 flex items-center justify-center">
           <Sparkles className="w-8 h-8 text-white" />
         </div>
