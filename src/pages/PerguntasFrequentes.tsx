@@ -275,9 +275,9 @@ const PerguntasFrequentes = () => {
         <p className="text-white/90 text-base font-light max-w-sm mx-auto">
           Respostas rápidas e diretas para você começar seu projeto agora mesmo
         </p>
-        
-        <WaveDivider variant="blue-to-white" />
       </section>
+      
+      <WaveDivider variant="blue-to-white" />
 
       {/* FAQ Categories */}
       <section className="px-4 py-8">

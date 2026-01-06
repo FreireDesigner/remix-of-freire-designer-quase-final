@@ -55,9 +55,9 @@ const CentralAtendimento = () => {
         <p className="text-white/80 text-sm font-light max-w-sm mx-auto">
           Entre em contato agora e receba atendimento personalizado de nossa equipe especializada
         </p>
-        
-        <WaveDivider variant="blue-to-white" />
       </section>
+      
+      <WaveDivider variant="blue-to-white" />
 
       {/* Contact Form */}
       <section className="px-4 py-8">
