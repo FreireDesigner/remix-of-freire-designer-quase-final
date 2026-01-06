@@ -9,6 +9,8 @@ import FacaSua from "./pages/FacaSua";
 import Equipe from "./pages/Equipe";
 import Feedbacks from "./pages/Feedbacks";
 import TodosModelos from "./pages/TodosModelos";
+import PerguntasFrequentes from "./pages/PerguntasFrequentes";
+import CentralAtendimento from "./pages/CentralAtendimento";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/feedbacks" element={<Feedbacks />} />
           <Route path="/todos-modelos" element={<TodosModelos />} />
+          <Route path="/perguntas-frequentes" element={<PerguntasFrequentes />} />
+          <Route path="/central-atendimento" element={<CentralAtendimento />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
