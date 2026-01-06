@@ -36,10 +36,10 @@ const Header = () => {
       
       {/* Navigation */}
       <nav className="flex items-center gap-4 px-3 py-2 overflow-x-auto hide-scrollbar border-t border-border bg-background">
-        <button className="flex items-center gap-1 text-xs font-bold text-foreground whitespace-nowrap">
+        <Link to="/todos-modelos" className="flex items-center gap-1 text-xs font-bold text-foreground whitespace-nowrap">
           Todos os Modelos
           <ChevronDown className="w-3 h-3" />
-        </button>
+        </Link>
         <Link to="/producao" className="text-xs font-bold text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors">
           Produção
         </Link>

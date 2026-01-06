@@ -62,10 +62,12 @@ const parceiros = [
   { inicial: "D", nome: "Desbravadores AR" },
   { inicial: "E", nome: "Escola Municipal" },
   { inicial: "U", nome: "União Jovem" },
-  { inicial: "C", nome: "Clube Esportivo" }
+  { inicial: "C", nome: "Clube Esportivo" },
+  { inicial: "A", nome: "Academia Fitness" },
+  { inicial: "I", nome: "Igreja Batista" }
 ];
 
-const instagramPhotos = Array.from({ length: 8 }, (_, i) => ({
+const instagramPhotos = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
   label: `FOTO #${i + 1}`
 }));
@@ -236,15 +238,18 @@ const Feedbacks = () => {
           Sua marca pode estar aqui também!
         </p>
         
-        <div className="grid grid-cols-2 gap-4">
-          {parceiros.map((parceiro, index) => (
-            <div key={index} className="bg-card rounded-2xl p-4 text-center shadow-sm">
-              <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-3 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">{parceiro.inicial}</span>
+        {/* Partners Carousel */}
+        <div className="relative">
+          <div className="flex gap-4 overflow-x-auto hide-scrollbar py-2">
+            {parceiros.map((parceiro, index) => (
+              <div key={index} className="flex-shrink-0 w-32 bg-card rounded-2xl p-4 text-center shadow-sm">
+                <div className="w-14 h-14 bg-primary rounded-full mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-white text-xl font-bold">{parceiro.inicial}</span>
+                </div>
+                <span className="text-xs text-muted-foreground font-light">LOGO</span>
               </div>
-              <span className="text-xs text-muted-foreground font-light">LOGO DA MARCA</span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -281,19 +286,19 @@ const Feedbacks = () => {
       <div className="relative">
         <div 
           ref={carouselRef1}
-          className="flex gap-4 overflow-x-auto hide-scrollbar px-4 py-4"
+          className="flex gap-3 overflow-x-auto hide-scrollbar px-4 py-4"
         >
-          {instagramPhotos.slice(0, 4).map((photo) => (
+          {instagramPhotos.slice(0, 6).map((photo) => (
             <div 
               key={photo.id}
-              className="flex-shrink-0 w-40 h-48 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden"
+              className="flex-shrink-0 w-36 h-44 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden"
               style={{ backgroundColor: photo.id % 2 === 0 ? '#fce7f3' : '#e0e7ff' }}
             >
-              <div className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <Instagram className="w-4 h-4 text-pink-500" />
+              <div className="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <Instagram className="w-3.5 h-3.5 text-pink-500" />
               </div>
-              <Instagram className="w-12 h-12 text-purple-400 mb-2" />
-              <span className="text-primary font-medium text-sm">{photo.label}</span>
+              <Instagram className="w-10 h-10 text-purple-400 mb-2" />
+              <span className="text-primary font-medium text-xs">{photo.label}</span>
             </div>
           ))}
         </div>
@@ -303,19 +308,19 @@ const Feedbacks = () => {
       <div className="relative mb-8">
         <div 
           ref={carouselRef2}
-          className="flex gap-4 overflow-x-auto hide-scrollbar px-4 py-4"
+          className="flex gap-3 overflow-x-auto hide-scrollbar px-4 py-4"
         >
-          {instagramPhotos.slice(4).map((photo) => (
+          {instagramPhotos.slice(6).map((photo) => (
             <div 
               key={photo.id}
-              className="flex-shrink-0 w-40 h-48 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden"
+              className="flex-shrink-0 w-36 h-44 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden"
               style={{ backgroundColor: photo.id % 2 === 0 ? '#dbeafe' : '#fce7f3' }}
             >
-              <div className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <Instagram className="w-4 h-4 text-pink-500" />
+              <div className="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <Instagram className="w-3.5 h-3.5 text-pink-500" />
               </div>
-              <Instagram className="w-12 h-12 text-purple-400 mb-2" />
-              <span className="text-primary font-medium text-sm">{photo.label}</span>
+              <Instagram className="w-10 h-10 text-purple-400 mb-2" />
+              <span className="text-primary font-medium text-xs">{photo.label}</span>
             </div>
           ))}
         </div>
