@@ -248,11 +248,9 @@ const Interclasse = () => {
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
                 <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <div className="flex items-center gap-1 mb-1">
-                    <Trophy className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
-                  </div>
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1">
+                    <span className="line-clamp-1">{item.name} <span className="text-muted-foreground font-normal">• {item.type}</span></span>
+                  </h3>
                   <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                   <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
                     item.isExclusive 
@@ -300,11 +298,9 @@ const Interclasse = () => {
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
                 <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <div className="flex items-center gap-1 mb-1">
-                    <Trophy className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
-                  </div>
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1">
+                    <span className="line-clamp-1">{item.name} <span className="text-muted-foreground font-normal">• {item.type}</span></span>
+                  </h3>
                   <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                   <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
                     item.isExclusive 
@@ -352,11 +348,9 @@ const Interclasse = () => {
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
                 <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <div className="flex items-center gap-1 mb-1">
-                    <MessageCircle className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
-                  </div>
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1">
+                    <span className="line-clamp-1">{item.name} <span className="text-muted-foreground font-normal">• {item.type}</span></span>
+                  </h3>
                   <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                   <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
                     item.isExclusive 
