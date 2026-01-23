@@ -7,10 +7,10 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background border-b border-border">
       {/* Main Header */}
       <div className="flex items-center justify-between px-3 py-2">
-        <div className="flex items-center gap-1.5">
+        <Link to="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
           <img src={logo} alt="Freire Designer" className="w-8 h-8 object-contain" />
           <span className="text-lg font-extrabold text-primary">FDesigner</span>
-        </div>
+        </Link>
         
         <div className="flex items-center gap-1">
           <Link to="/" className="p-1.5 hover:bg-secondary rounded-full transition-colors">
