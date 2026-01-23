@@ -229,15 +229,15 @@ const Personagens = () => {
       <Header />
       <main>
         {/* Banner Image */}
-        <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#7c3aed] to-[#a855f7] flex items-center justify-center">
+        <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#0038a8] to-[#0059fa] flex items-center justify-center">
           <span className="text-white/30 text-sm font-medium">BANNER_PERSONAGENS</span>
         </div>
 
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#7c3aed] to-[#a855f7] px-4 pt-8 pb-4">
+        <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 pt-8 pb-4">
           {/* Badge */}
           <div className="flex justify-center mb-6">
-            <div className="bg-[#8b5cf6]/60 backdrop-blur-sm rounded-full px-5 py-2.5 flex items-center gap-2">
+            <div className="bg-[#1a4fc9]/60 backdrop-blur-sm rounded-full px-5 py-2.5 flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-white" />
               <span className="text-white text-sm font-medium">Camisetas de Personagens</span>
             </div>
@@ -295,7 +295,7 @@ const Personagens = () => {
         {/* Best Sellers Carousel Section */}
         <section className="bg-background py-10 overflow-hidden">
           <div className="px-4">
-            <h2 className="text-3xl font-black text-[#7c3aed] text-center leading-tight mb-4">
+            <h2 className="text-3xl font-black text-[#2563eb] text-center leading-tight mb-4">
               Modelos Mais<br />Vendidos
             </h2>
             <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-md mx-auto">
@@ -309,7 +309,7 @@ const Personagens = () => {
         <WaveDivider variant="white-to-blue" />
 
         {/* Pop Section */}
-        <section className="bg-gradient-to-br from-[#7c3aed] to-[#a855f7] px-4 py-10">
+        <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 py-10">
           <h2 className="text-3xl font-black text-white text-center leading-tight mb-3">
             Cultura Pop
           </h2>
@@ -329,11 +329,9 @@ const Personagens = () => {
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
                 <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <div className="flex items-center gap-1 mb-1">
-                    <Star className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
-                  </div>
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1">
+                    <span className="line-clamp-1">{item.name} <span className="text-muted-foreground font-normal">• {item.type}</span></span>
+                  </h3>
                   <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                   <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
                     item.isExclusive 
@@ -350,7 +348,7 @@ const Personagens = () => {
           {visiblePop < pop.length && (
             <button 
               onClick={() => setVisiblePop(prev => Math.min(prev + 6, pop.length))}
-              className="w-full bg-white hover:bg-white/95 text-[#7c3aed] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
+              className="w-full bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
             >
               <span>Ver Mais</span>
               <ArrowRight className="w-5 h-5" />
@@ -362,7 +360,7 @@ const Personagens = () => {
 
         {/* Animes Section */}
         <section className="bg-background px-4 py-10">
-          <h2 className="text-3xl font-black text-[#7c3aed] text-center leading-tight mb-3">
+          <h2 className="text-3xl font-black text-[#2563eb] text-center leading-tight mb-3">
             Animes
           </h2>
           <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-sm mx-auto">
@@ -381,11 +379,9 @@ const Personagens = () => {
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
                 <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <div className="flex items-center gap-1 mb-1">
-                    <Sparkles className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
-                  </div>
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1">
+                    <span className="line-clamp-1">{item.name} <span className="text-muted-foreground font-normal">• {item.type}</span></span>
+                  </h3>
                   <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                   <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
                     item.isExclusive 
@@ -413,7 +409,7 @@ const Personagens = () => {
         <WaveDivider variant="white-to-blue" />
 
         {/* Games Section */}
-        <section className="bg-gradient-to-br from-[#7c3aed] to-[#a855f7] px-4 py-10">
+        <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 py-10">
           <h2 className="text-3xl font-black text-white text-center leading-tight mb-3">
             Games
           </h2>
@@ -433,11 +429,9 @@ const Personagens = () => {
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
                 <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <div className="flex items-center gap-1 mb-1">
-                    <MessageCircle className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
-                  </div>
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1">
+                    <span className="line-clamp-1">{item.name} <span className="text-muted-foreground font-normal">• {item.type}</span></span>
+                  </h3>
                   <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                   <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
                     item.isExclusive 
@@ -454,7 +448,7 @@ const Personagens = () => {
           {visibleGames < games.length && (
             <button 
               onClick={() => setVisibleGames(prev => Math.min(prev + 6, games.length))}
-              className="w-full bg-white hover:bg-white/95 text-[#7c3aed] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
+              className="w-full bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
             >
               <span>Ver Mais</span>
               <ArrowRight className="w-5 h-5" />
@@ -540,7 +534,7 @@ const Personagens = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-br from-[#7c3aed] to-[#a855f7] px-4 py-14 text-center">
+        <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 py-14 text-center">
           <div className="flex justify-center mb-6">
             <Sparkles className="w-16 h-16 text-white" strokeWidth={1.5} />
           </div>
@@ -553,7 +547,7 @@ const Personagens = () => {
             Fale com nosso Designer agora e receba sua proposta personalizada!
           </p>
 
-          <button className="w-full max-w-sm bg-white hover:bg-white/95 text-[#7c3aed] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg mx-auto">
+          <button className="w-full max-w-sm bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg mx-auto">
             <MessageCircle className="w-5 h-5" />
             <span>Solicitar Meu Personagem</span>
           </button>
