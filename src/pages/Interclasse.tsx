@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -22,6 +22,8 @@ const bestSellers = [
   { name: "Modelo Best Seller 11", sales: "350+ vendidos", price: 94.90, isExclusive: false },
   { name: "Modelo Best Seller 12", sales: "280+ vendidos", price: 79.90, isExclusive: false },
   { name: "Modelo Best Seller 13", sales: "310+ vendidos", price: 84.90, isExclusive: true },
+  { name: "Modelo Best Seller 14", sales: "290+ vendidos", price: 89.90, isExclusive: false },
+  { name: "Modelo Best Seller 15", sales: "320+ vendidos", price: 94.90, isExclusive: false },
 ];
 
 const mascotes = [
@@ -80,12 +82,94 @@ const faqItems = [
   { question: "Como funciona a aprovação do layout?", answer: "Após o pedido, enviamos uma arte para aprovação. Só iniciamos a produção após sua confirmação." },
 ];
 
+// Carousel Component for Best Sellers
+interface BestSellerItem {
+  name: string;
+  sales: string;
+  price: number;
+  isExclusive: boolean;
+}
+
+const BestSellersCarousel = ({ items }: { items: BestSellerItem[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId: number;
+    let scrollPosition = 0;
+    const speed = 0.8;
+
+    const animate = () => {
+      if (!isPaused && scrollContainer) {
+        scrollPosition += speed;
+        const maxScroll = scrollContainer.scrollWidth / 2;
+        
+        if (scrollPosition >= maxScroll) {
+          scrollPosition = 0;
+        }
+        
+        scrollContainer.scrollLeft = scrollPosition;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
+
+  const duplicatedItems = [...items, ...items];
+
+  return (
+    <div
+      ref={scrollRef}
+      className="flex gap-4 overflow-x-auto scrollbar-hide px-4"
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
+      {duplicatedItems.map((item, index) => (
+        <div 
+          key={index} 
+          className={`flex-shrink-0 w-44 rounded-xl overflow-hidden shadow-md ${item.isExclusive ? 'border-2 border-amber-400' : 'bg-card'}`}
+        >
+          <div className="relative bg-secondary aspect-square flex items-center justify-center">
+            {item.isExclusive && (
+              <span className="absolute top-2 right-2 w-10 h-10 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
+                <Crown className="w-5 h-5 text-black" fill="black" />
+              </span>
+            )}
+            <span className="text-muted-foreground text-sm font-bold">TAQUI</span>
+          </div>
+          <div className="p-3 bg-card">
+            <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
+            <p className="text-muted-foreground text-[10px] mb-1">{item.sales}</p>
+            <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+            <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
+              item.isExclusive 
+                ? "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:opacity-90 text-white"
+                : "bg-primary hover:bg-primary/90 text-primary-foreground"
+            }`}>
+              Ver Detalhes
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Interclasse = () => {
   const [visibleMascotes, setVisibleMascotes] = useState(4);
   const [visibleTimes, setVisibleTimes] = useState(4);
   const [visiblePersonagens, setVisiblePersonagens] = useState(4);
 
   return (
+
     <div className="min-h-screen bg-background">
       <Header />
       <main>
@@ -127,41 +211,18 @@ const Interclasse = () => {
 
         <WaveDivider variant="blue-to-white" />
 
-        {/* Best Sellers Section */}
-        <section className="bg-background px-4 py-10">
-          <h2 className="text-3xl font-black text-[#2563eb] text-center leading-tight mb-4">
-            Modelos Mais<br />Vendidos
-          </h2>
-          <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-md mx-auto">
-            Confira os uniformes de interclasse que fizeram o maior sucesso entre centenas de turmas por todo o Brasil. Designs aprovados, testados e amados pelos alunos.
-          </p>
-
-          <div className="grid grid-cols-2 gap-3">
-            {bestSellers.map((item, index) => (
-              <div key={index} className={`rounded-xl overflow-hidden shadow-md ${item.isExclusive ? 'border-2 border-amber-400' : 'bg-card'}`}>
-                <div className="relative bg-secondary aspect-square flex items-center justify-center">
-                  {item.isExclusive && (
-                    <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
-                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
-                    </span>
-                  )}
-                  <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
-                </div>
-                <div className="p-3 bg-card">
-                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
-                  <p className="text-muted-foreground text-[10px] mb-1">{item.sales}</p>
-                  <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
-                  <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
-                    item.isExclusive 
-                      ? "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:opacity-90 text-white"
-                      : "bg-primary hover:bg-primary/90 text-primary-foreground"
-                  }`}>
-                    Ver Detalhes
-                  </button>
-                </div>
-              </div>
-            ))}
+        {/* Best Sellers Carousel Section */}
+        <section className="bg-background py-10 overflow-hidden">
+          <div className="px-4">
+            <h2 className="text-3xl font-black text-[#2563eb] text-center leading-tight mb-4">
+              Modelos Mais<br />Vendidos
+            </h2>
+            <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-md mx-auto">
+              Confira os uniformes de interclasse que fizeram o maior sucesso entre centenas de turmas por todo o Brasil.
+            </p>
           </div>
+
+          <BestSellersCarousel items={bestSellers} />
         </section>
 
         <WaveDivider variant="white-to-blue" />
@@ -181,7 +242,7 @@ const Interclasse = () => {
                 <div className="relative bg-secondary aspect-square flex items-center justify-center">
                   {item.isExclusive && (
                     <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
-                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                      <Crown className="w-4 h-4 text-black" fill="black" />
                     </span>
                   )}
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
@@ -233,7 +294,7 @@ const Interclasse = () => {
                 <div className="relative bg-secondary aspect-square flex items-center justify-center">
                   {item.isExclusive && (
                     <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
-                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                      <Crown className="w-4 h-4 text-black" fill="black" />
                     </span>
                   )}
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
@@ -285,7 +346,7 @@ const Interclasse = () => {
                 <div className="relative bg-secondary aspect-square flex items-center justify-center">
                   {item.isExclusive && (
                     <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
-                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                      <Crown className="w-4 h-4 text-black" fill="black" />
                     </span>
                   )}
                   <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
