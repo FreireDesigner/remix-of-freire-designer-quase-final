@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import WaveDivider from "@/components/WaveDivider";
+import Header from "@/components/Header";
 const modelosData: Record<string, {
   nome: string;
   descricao: string;
@@ -129,12 +130,15 @@ const DetalhesModelo = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="sticky top-0 z-50 bg-background border-b border-border">
+      <Header />
+      
+      {/* Secondary nav with back button */}
+      <div className="bg-background border-b border-border">
         <div className="flex items-center gap-3 px-4 py-3">
           <Link to={returnTo} className="p-1 hover:bg-secondary rounded-full"><ArrowLeft className="w-5 h-5" /></Link>
           <h1 className="text-base font-bold">Detalhes do modelo</h1>
         </div>
-      </header>
+      </div>
 
       <div className="flex-1 overflow-y-auto pb-28">
         {/* Image */}
