@@ -34,7 +34,7 @@ const collarTypes = [
 
 const fabricTypes = [
   { name: "Thermica (Premium)", description: "Tecido térmico de alta performance", price: 8, priceLabel: "+R$ 8,00" },
-  { name: "DryFit Premium (Padrão)", description: "Tecido esportivo/social com acabamento premium", price: 0, priceLabel: "Incluído", isDefault: true },
+  { name: "DryFit Premium (Padrão)", description: "Tecido esportivo/social com acabamento premium", price: 0, priceLabel: "Incluso", isDefault: true },
   { name: "Helanca (Econômico)", description: "Tecido leve e confortável", price: -5, priceLabel: "-R$ 5,00" },
 ];
 
