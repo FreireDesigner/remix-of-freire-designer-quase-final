@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-type TipoModelo = "Sublimações" | "Estampas";
+// Gospel only has Estampas, no Sublimações option
 
 const stats = [
   { value: "5+", label: "Anos no Mercado" },
@@ -19,16 +19,7 @@ const stats = [
   { value: "98%", label: "Satisfação" },
 ];
 
-const bestSellersSublimacao = [
-  { name: "Gospel Best Seller 1", sales: "450+ vendidos", price: 89.90, isExclusive: true },
-  { name: "Gospel Best Seller 2", sales: "380+ vendidos", price: 94.90, isExclusive: false },
-  { name: "Gospel Best Seller 3", sales: "320+ vendidos", price: 79.90, isExclusive: false },
-  { name: "Gospel Best Seller 4", sales: "410+ vendidos", price: 84.90, isExclusive: true },
-  { name: "Gospel Best Seller 5", sales: "290+ vendidos", price: 89.90, isExclusive: false },
-  { name: "Gospel Best Seller 6", sales: "350+ vendidos", price: 94.90, isExclusive: false },
-];
-
-const bestSellersEstampa = [
+const bestSellers = [
   { name: "Estampa Gospel 1", sales: "520+ vendidos", price: 69.90, isExclusive: true },
   { name: "Estampa Gospel 2", sales: "480+ vendidos", price: 74.90, isExclusive: false },
   { name: "Estampa Gospel 3", sales: "390+ vendidos", price: 64.90, isExclusive: false },
@@ -37,97 +28,52 @@ const bestSellersEstampa = [
   { name: "Estampa Gospel 6", sales: "410+ vendidos", price: 69.90, isExclusive: false },
 ];
 
-// Igrejas items
-const igrejasSublimacao = [
-  { name: "Igreja 1", type: "Batista", price: 89.90, isExclusive: true },
-  { name: "Igreja 2", type: "Assembleia", price: 89.90, isExclusive: false },
-  { name: "Igreja 3", type: "Presbiteriana", price: 94.90, isExclusive: false },
-  { name: "Igreja 4", type: "Metodista", price: 89.90, isExclusive: true },
-  { name: "Igreja 5", type: "Adventista", price: 94.90, isExclusive: false },
-  { name: "Igreja 6", type: "Católica", price: 89.90, isExclusive: false },
-  { name: "Igreja 7", type: "Luterana", price: 84.90, isExclusive: false },
-  { name: "Igreja 8", type: "Quadrangular", price: 99.90, isExclusive: true },
-  { name: "Igreja 9", type: "Universal", price: 99.90, isExclusive: false },
-  { name: "Igreja 10", type: "Mundial", price: 89.90, isExclusive: false },
-  { name: "Igreja 11", type: "Sara Nossa Terra", price: 89.90, isExclusive: true },
-  { name: "Igreja 12", type: "Renascer", price: 89.90, isExclusive: false },
+// Igrejas items (only Estampas for Gospel)
+const igrejas = [
+  { name: "Igreja 1", type: "Batista", price: 69.90, isExclusive: true },
+  { name: "Igreja 2", type: "Assembleia", price: 69.90, isExclusive: false },
+  { name: "Igreja 3", type: "Presbiteriana", price: 74.90, isExclusive: false },
+  { name: "Igreja 4", type: "Metodista", price: 69.90, isExclusive: true },
+  { name: "Igreja 5", type: "Adventista", price: 74.90, isExclusive: false },
+  { name: "Igreja 6", type: "Católica", price: 69.90, isExclusive: false },
+  { name: "Igreja 7", type: "Luterana", price: 64.90, isExclusive: false },
+  { name: "Igreja 8", type: "Quadrangular", price: 79.90, isExclusive: true },
+  { name: "Igreja 9", type: "Universal", price: 79.90, isExclusive: false },
+  { name: "Igreja 10", type: "Mundial", price: 69.90, isExclusive: false },
+  { name: "Igreja 11", type: "Sara Nossa Terra", price: 69.90, isExclusive: true },
+  { name: "Igreja 12", type: "Renascer", price: 69.90, isExclusive: false },
 ];
 
-const igrejasEstampa = [
-  { name: "Igreja Estampa 1", type: "Batista", price: 69.90, isExclusive: true },
-  { name: "Igreja Estampa 2", type: "Assembleia", price: 69.90, isExclusive: false },
-  { name: "Igreja Estampa 3", type: "Presbiteriana", price: 74.90, isExclusive: false },
-  { name: "Igreja Estampa 4", type: "Metodista", price: 69.90, isExclusive: true },
-  { name: "Igreja Estampa 5", type: "Adventista", price: 74.90, isExclusive: false },
-  { name: "Igreja Estampa 6", type: "Católica", price: 69.90, isExclusive: false },
-  { name: "Igreja Estampa 7", type: "Luterana", price: 64.90, isExclusive: false },
-  { name: "Igreja Estampa 8", type: "Quadrangular", price: 79.90, isExclusive: true },
-  { name: "Igreja Estampa 9", type: "Universal", price: 79.90, isExclusive: false },
-  { name: "Igreja Estampa 10", type: "Mundial", price: 69.90, isExclusive: false },
-  { name: "Igreja Estampa 11", type: "Sara Nossa Terra", price: 69.90, isExclusive: true },
-  { name: "Igreja Estampa 12", type: "Renascer", price: 69.90, isExclusive: false },
+// Eventos items (only Estampas for Gospel)
+const eventos = [
+  { name: "Evento 1", type: "Congresso", price: 69.90, isExclusive: false },
+  { name: "Evento 2", type: "Retiro", price: 69.90, isExclusive: true },
+  { name: "Evento 3", type: "Conferência", price: 64.90, isExclusive: false },
+  { name: "Evento 4", type: "Culto Especial", price: 64.90, isExclusive: false },
+  { name: "Evento 5", type: "Vigília", price: 59.90, isExclusive: true },
+  { name: "Evento 6", type: "Encontro", price: 69.90, isExclusive: false },
+  { name: "Evento 7", type: "Acampamento", price: 64.90, isExclusive: false },
+  { name: "Evento 8", type: "Missão", price: 74.90, isExclusive: false },
+  { name: "Evento 9", type: "Evangelismo", price: 74.90, isExclusive: true },
+  { name: "Evento 10", type: "Louvor", price: 69.90, isExclusive: false },
+  { name: "Evento 11", type: "Workshop", price: 69.90, isExclusive: false },
+  { name: "Evento 12", type: "Celebração", price: 69.90, isExclusive: true },
 ];
 
-// Eventos items
-const eventosSublimacao = [
-  { name: "Evento 1", type: "Congresso", price: 89.90, isExclusive: false },
-  { name: "Evento 2", type: "Retiro", price: 89.90, isExclusive: true },
-  { name: "Evento 3", type: "Conferência", price: 84.90, isExclusive: false },
-  { name: "Evento 4", type: "Culto Especial", price: 84.90, isExclusive: false },
-  { name: "Evento 5", type: "Vigília", price: 79.90, isExclusive: true },
-  { name: "Evento 6", type: "Encontro", price: 89.90, isExclusive: false },
-  { name: "Evento 7", type: "Acampamento", price: 84.90, isExclusive: false },
-  { name: "Evento 8", type: "Missão", price: 94.90, isExclusive: false },
-  { name: "Evento 9", type: "Evangelismo", price: 94.90, isExclusive: true },
-  { name: "Evento 10", type: "Louvor", price: 89.90, isExclusive: false },
-  { name: "Evento 11", type: "Workshop", price: 89.90, isExclusive: false },
-  { name: "Evento 12", type: "Celebração", price: 89.90, isExclusive: true },
-];
-
-const eventosEstampa = [
-  { name: "Evento Estampa 1", type: "Congresso", price: 69.90, isExclusive: false },
-  { name: "Evento Estampa 2", type: "Retiro", price: 69.90, isExclusive: true },
-  { name: "Evento Estampa 3", type: "Conferência", price: 64.90, isExclusive: false },
-  { name: "Evento Estampa 4", type: "Culto Especial", price: 64.90, isExclusive: false },
-  { name: "Evento Estampa 5", type: "Vigília", price: 59.90, isExclusive: true },
-  { name: "Evento Estampa 6", type: "Encontro", price: 69.90, isExclusive: false },
-  { name: "Evento Estampa 7", type: "Acampamento", price: 64.90, isExclusive: false },
-  { name: "Evento Estampa 8", type: "Missão", price: 74.90, isExclusive: false },
-  { name: "Evento Estampa 9", type: "Evangelismo", price: 74.90, isExclusive: true },
-  { name: "Evento Estampa 10", type: "Louvor", price: 69.90, isExclusive: false },
-  { name: "Evento Estampa 11", type: "Workshop", price: 69.90, isExclusive: false },
-  { name: "Evento Estampa 12", type: "Celebração", price: 69.90, isExclusive: true },
-];
-
-// Ministérios items
-const ministeriosSublimacao = [
-  { name: "Ministério 1", type: "Louvor", price: 94.90, isExclusive: true },
-  { name: "Ministério 2", type: "Jovens", price: 89.90, isExclusive: false },
-  { name: "Ministério 3", type: "Infantil", price: 89.90, isExclusive: true },
-  { name: "Ministério 4", type: "Casais", price: 94.90, isExclusive: false },
-  { name: "Ministério 5", type: "Mulheres", price: 89.90, isExclusive: false },
-  { name: "Ministério 6", type: "Homens", price: 89.90, isExclusive: false },
-  { name: "Ministério 7", type: "Dança", price: 94.90, isExclusive: true },
-  { name: "Ministério 8", type: "Teatro", price: 84.90, isExclusive: false },
-  { name: "Ministério 9", type: "Intercessão", price: 99.90, isExclusive: false },
-  { name: "Ministério 10", type: "Missões", price: 89.90, isExclusive: false },
-  { name: "Ministério 11", type: "Visitação", price: 94.90, isExclusive: true },
-  { name: "Ministério 12", type: "Acolhimento", price: 89.90, isExclusive: false },
-];
-
-const ministeriosEstampa = [
-  { name: "Ministério Estampa 1", type: "Louvor", price: 74.90, isExclusive: true },
-  { name: "Ministério Estampa 2", type: "Jovens", price: 69.90, isExclusive: false },
-  { name: "Ministério Estampa 3", type: "Infantil", price: 69.90, isExclusive: true },
-  { name: "Ministério Estampa 4", type: "Casais", price: 74.90, isExclusive: false },
-  { name: "Ministério Estampa 5", type: "Mulheres", price: 69.90, isExclusive: false },
-  { name: "Ministério Estampa 6", type: "Homens", price: 69.90, isExclusive: false },
-  { name: "Ministério Estampa 7", type: "Dança", price: 74.90, isExclusive: true },
-  { name: "Ministério Estampa 8", type: "Teatro", price: 64.90, isExclusive: false },
-  { name: "Ministério Estampa 9", type: "Intercessão", price: 79.90, isExclusive: false },
-  { name: "Ministério Estampa 10", type: "Missões", price: 69.90, isExclusive: false },
-  { name: "Ministério Estampa 11", type: "Visitação", price: 74.90, isExclusive: true },
-  { name: "Ministério Estampa 12", type: "Acolhimento", price: 69.90, isExclusive: false },
+// Ministérios items (only Estampas for Gospel)
+const ministerios = [
+  { name: "Ministério 1", type: "Louvor", price: 74.90, isExclusive: true },
+  { name: "Ministério 2", type: "Jovens", price: 69.90, isExclusive: false },
+  { name: "Ministério 3", type: "Infantil", price: 69.90, isExclusive: true },
+  { name: "Ministério 4", type: "Casais", price: 74.90, isExclusive: false },
+  { name: "Ministério 5", type: "Mulheres", price: 69.90, isExclusive: false },
+  { name: "Ministério 6", type: "Homens", price: 69.90, isExclusive: false },
+  { name: "Ministério 7", type: "Dança", price: 74.90, isExclusive: true },
+  { name: "Ministério 8", type: "Teatro", price: 64.90, isExclusive: false },
+  { name: "Ministério 9", type: "Intercessão", price: 79.90, isExclusive: false },
+  { name: "Ministério 10", type: "Missões", price: 69.90, isExclusive: false },
+  { name: "Ministério 11", type: "Visitação", price: 74.90, isExclusive: true },
+  { name: "Ministério 12", type: "Acolhimento", price: 69.90, isExclusive: false },
 ];
 
 const inclusos = [
@@ -229,15 +175,9 @@ const BestSellersCarousel = ({ items }: { items: BestSellerItem[] }) => {
 };
 
 const Gospel = () => {
-  const [tipoSelecionado, setTipoSelecionado] = useState<TipoModelo>("Sublimações");
   const [visibleIgrejas, setVisibleIgrejas] = useState(6);
   const [visibleEventos, setVisibleEventos] = useState(6);
   const [visibleMinisterios, setVisibleMinisterios] = useState(6);
-
-  const bestSellers = tipoSelecionado === "Sublimações" ? bestSellersSublimacao : bestSellersEstampa;
-  const igrejas = tipoSelecionado === "Sublimações" ? igrejasSublimacao : igrejasEstampa;
-  const eventos = tipoSelecionado === "Sublimações" ? eventosSublimacao : eventosEstampa;
-  const ministerios = tipoSelecionado === "Sublimações" ? ministeriosSublimacao : ministeriosEstampa;
 
   return (
     <div className="min-h-screen bg-background">
@@ -281,29 +221,12 @@ const Gospel = () => {
 
         <WaveDivider variant="blue-to-white" />
 
-        {/* Type Selector */}
+        {/* Estampas Only Badge */}
         <section className="bg-background px-4 py-6">
-          <div className="flex justify-center gap-3">
-            <button
-              onClick={() => setTipoSelecionado("Sublimações")}
-              className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
-                tipoSelecionado === "Sublimações"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-secondary text-foreground hover:bg-secondary/80"
-              }`}
-            >
-              Sublimações
-            </button>
-            <button
-              onClick={() => setTipoSelecionado("Estampas")}
-              className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
-                tipoSelecionado === "Estampas"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-secondary text-foreground hover:bg-secondary/80"
-              }`}
-            >
+          <div className="flex justify-center">
+            <div className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold text-sm shadow-lg">
               Estampas
-            </button>
+            </div>
           </div>
         </section>
 
