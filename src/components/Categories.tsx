@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const categories = [
   { name: "INTERCLASSE", color: "category-blue", link: "/interclasse" },
   { name: "PERSONAGENS", color: "category-purple", link: "/personagens" },
-  { name: "DESBRAVADOR", color: "category-pink", link: null },
-  { name: "TIMES", color: "category-orange", link: null },
-  { name: "GOSPEL", color: "category-gold", link: null },
+  { name: "DESBRAVADOR", color: "category-pink", link: "/desbravador" },
+  { name: "TIMES", color: "category-orange", link: "/times" },
+  { name: "GOSPEL", color: "category-gold", link: "/gospel" },
 ];
 
 const Categories = () => {

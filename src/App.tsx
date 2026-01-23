@@ -13,6 +13,9 @@ import PerguntasFrequentes from "./pages/PerguntasFrequentes";
 import CentralAtendimento from "./pages/CentralAtendimento";
 import Interclasse from "./pages/Interclasse";
 import Personagens from "./pages/Personagens";
+import Desbravador from "./pages/Desbravador";
+import Times from "./pages/Times";
+import Gospel from "./pages/Gospel";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +37,9 @@ const App = () => (
           <Route path="/central-atendimento" element={<CentralAtendimento />} />
           <Route path="/interclasse" element={<Interclasse />} />
           <Route path="/personagens" element={<Personagens />} />
+          <Route path="/desbravador" element={<Desbravador />} />
+          <Route path="/times" element={<Times />} />
+          <Route path="/gospel" element={<Gospel />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
