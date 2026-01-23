@@ -66,9 +66,9 @@ const personagens = [
 ];
 
 const inclusos = [
-  { icon: Users, title: "Nome da Turma", description: "Já incluído no preço base", included: true },
-  { icon: Shirt, title: "Número Individual", description: "Já incluído no preço base", included: true },
-  { icon: MessageCircle, title: "Logo/Escudo", description: "Já incluído no preço base", included: true },
+  { icon: Users, title: "Nome da Turma", description: "Já incluso no preço base", included: true },
+  { icon: Shirt, title: "Número Individual", description: "Já incluso no preço base", included: true },
+  { icon: MessageCircle, title: "Logo/Escudo", description: "Já incluso no preço base", included: true },
 ];
 
 const extras = [
@@ -93,25 +93,25 @@ interface BestSellerItem {
 const BestSellersCarousel = ({ items }: { items: BestSellerItem[] }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     let animationId: number;
-    let scrollPosition = 0;
     const speed = 0.8;
 
     const animate = () => {
       if (!isPaused && scrollContainer) {
-        scrollPosition += speed;
+        scrollPositionRef.current += speed;
         const maxScroll = scrollContainer.scrollWidth / 2;
         
-        if (scrollPosition >= maxScroll) {
-          scrollPosition = 0;
+        if (scrollPositionRef.current >= maxScroll) {
+          scrollPositionRef.current = 0;
         }
         
-        scrollContainer.scrollLeft = scrollPosition;
+        scrollContainer.scrollLeft = scrollPositionRef.current;
       }
       animationId = requestAnimationFrame(animate);
     };
@@ -383,10 +383,10 @@ const Interclasse = () => {
 
         <WaveDivider variant="blue-to-white" />
 
-        {/* O que está Incluído Section */}
+        {/* O que está Incluso Section */}
         <section className="bg-background px-4 py-10">
           <h2 className="text-3xl font-black text-foreground text-center leading-tight mb-3">
-            O que está Incluído?
+            O que está Incluso?
           </h2>
           <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-md mx-auto">
             Veja tudo que você recebe no pacote básico e as opções extras disponíveis
@@ -405,7 +405,7 @@ const Interclasse = () => {
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      Incluído
+                      Incluso
                     </span>
                   </div>
                   <p className="text-foreground/60 text-sm mt-0.5">{item.description}</p>
@@ -416,14 +416,14 @@ const Interclasse = () => {
 
           <div className="space-y-4">
             {extras.map((item, index) => (
-              <div key={index} className="bg-gradient-to-r from-[#fff7e6] to-[#ffe4b3] border-2 border-[#f59e0b] rounded-2xl p-4 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#f59e0b] to-[#ea580c] flex items-center justify-center flex-shrink-0">
+              <div key={index} className="bg-gradient-to-r from-[#e6f0ff] to-[#cce0ff] border-2 border-[#2563eb] rounded-2xl p-4 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#2563eb] to-[#1e40af] flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="font-bold text-foreground text-base">{item.title}</h3>
-                    <span className="text-[#ea580c] font-bold text-base">{item.price}</span>
+                    <span className="text-[#1e40af] font-bold text-base whitespace-nowrap">{item.price}</span>
                   </div>
                 </div>
               </div>
