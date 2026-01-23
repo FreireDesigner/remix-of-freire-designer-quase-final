@@ -16,6 +16,7 @@ import Personagens from "./pages/Personagens";
 import Desbravador from "./pages/Desbravador";
 import Times from "./pages/Times";
 import Gospel from "./pages/Gospel";
+import DetalhesModelo from "./pages/DetalhesModelo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/desbravador" element={<Desbravador />} />
           <Route path="/times" element={<Times />} />
           <Route path="/gospel" element={<Gospel />} />
+          <Route path="/modelo/:id" element={<DetalhesModelo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
