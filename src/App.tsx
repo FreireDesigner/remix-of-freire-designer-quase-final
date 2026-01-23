@@ -12,6 +12,7 @@ import TodosModelos from "./pages/TodosModelos";
 import PerguntasFrequentes from "./pages/PerguntasFrequentes";
 import CentralAtendimento from "./pages/CentralAtendimento";
 import Interclasse from "./pages/Interclasse";
+import Personagens from "./pages/Personagens";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/perguntas-frequentes" element={<PerguntasFrequentes />} />
           <Route path="/central-atendimento" element={<CentralAtendimento />} />
           <Route path="/interclasse" element={<Interclasse />} />
+          <Route path="/personagens" element={<Personagens />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
