@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { ArrowLeft, Heart, Share2, Star, User, Crown, Sparkles, Truck, Check, Gift, MessageCircle, Droplets, ThermometerSun, Shirt, WashingMachine, Wind, CircleOff } from "lucide-react";
+import { ArrowLeft, Heart, Share2, Star, User, Crown, Sparkles, Truck, Check, Gift, MessageCircle, ThermometerSun, Shirt, WashingMachine, Wind, CircleOff, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import WaveDivider from "@/components/WaveDivider";
 const modelosData: Record<string, {
   nome: string;
   descricao: string;
@@ -66,6 +67,7 @@ const modelosSugeridos = [
 const DetalhesModelo = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const [descontosAberto, setDescontosAberto] = useState(false);
   const returnTo = searchParams.get("from") || "/";
   
   const [tecidoSelecionado, setTecidoSelecionado] = useState("dryfit");
@@ -117,7 +119,7 @@ const DetalhesModelo = () => {
           {modelo.desconto > 0 && <span className="absolute top-4 left-4 px-3 py-1 text-xs font-bold bg-green-500 text-white rounded-full">{modelo.desconto}% OFF</span>}
         </div>
 
-        <div className="p-4 space-y-5">
+        <div className="p-4 space-y-5 max-w-2xl mx-auto">
           {/* Category */}
           <p className="text-sm font-bold text-primary">{modelo.categoria} • {modelo.subcategoria}</p>
 
@@ -214,16 +216,7 @@ const DetalhesModelo = () => {
                   <span className="text-sm">{item.nome}</span>
                 </div>
               ))}
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm">Escolha do personagem {modelo.categoria} favorito</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm">Cores customizadas</span>
-              </div>
             </div>
-            <p className="text-primary text-sm font-medium mt-3">+ 2 opções adicionais</p>
           </div>
 
           {/* Edição Exclusiva - Extra */}
@@ -243,13 +236,16 @@ const DetalhesModelo = () => {
             </button>
           </div>
 
-          {/* Brindes por Quantidade */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Gift className="w-5 h-5 text-amber-500" />
-              <h3 className="text-base font-bold">Descontos & Brindes por Quantidade</h3>
-            </div>
-            <div className="space-y-2">
+          {/* Brindes por Quantidade - Collapsible */}
+          <Collapsible open={descontosAberto} onOpenChange={setDescontosAberto}>
+            <CollapsibleTrigger className="w-full p-4 rounded-xl border-2 border-green-500 flex items-center justify-between hover:bg-green-50/50 transition-colors">
+              <div className="flex items-center gap-2">
+                <Gift className="w-5 h-5 text-green-600" />
+                <h3 className="text-base font-bold text-green-700">Descontos & Brindes por Quantidade</h3>
+              </div>
+              <ChevronDown className={`w-5 h-5 text-green-600 transition-transform ${descontosAberto ? "rotate-180" : ""}`} />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-3 space-y-2">
               {brindes.map(b => (
                 <button 
                   key={b.quantidade} 
@@ -260,14 +256,14 @@ const DetalhesModelo = () => {
                         ? "border-amber-400 bg-amber-50" 
                         : "border-amber-300 bg-amber-50/50"
                       : brindeSelecionado === b.quantidade 
-                        ? "border-primary bg-primary/5" 
+                        ? "border-green-500 bg-green-50" 
                         : "border-border"
                   }`}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex items-center gap-2">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${brindeSelecionado === b.quantidade ? "border-primary" : "border-muted-foreground"}`}>
-                        {brindeSelecionado === b.quantidade && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${brindeSelecionado === b.quantidade ? "border-green-500" : "border-muted-foreground"}`}>
+                        {brindeSelecionado === b.quantidade && <div className="w-2.5 h-2.5 rounded-full bg-green-500" />}
                       </div>
                       <span className="font-bold">{b.quantidade} unidades</span>
                       {b.premium && (
@@ -293,12 +289,12 @@ const DetalhesModelo = () => {
                   )}
                 </button>
               ))}
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground pl-1">
-              <Crown className="w-4 h-4" />
-              <span>Quanto maior a quantidade, melhores os benefícios</span>
-            </div>
-          </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground pl-1">
+                <Crown className="w-4 h-4" />
+                <span>Quanto maior a quantidade, melhores os benefícios</span>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
 
           {/* Frete Grátis */}
           <div className="bg-green-50 rounded-xl p-4 border border-green-200">
@@ -317,30 +313,30 @@ const DetalhesModelo = () => {
 
           {/* Descrição, Especificações, Cuidados */}
           <Tabs defaultValue="descricao" className="w-full">
-            <TabsList className="w-full grid grid-cols-3 h-auto p-1 bg-secondary/50">
-              <TabsTrigger value="descricao" className="text-xs py-2">Descrição</TabsTrigger>
-              <TabsTrigger value="especificacoes" className="text-xs py-2">Especificações</TabsTrigger>
-              <TabsTrigger value="cuidados" className="text-xs py-2">Cuidados</TabsTrigger>
+            <TabsList className="w-full grid grid-cols-3 h-auto p-1.5 bg-primary/10 rounded-xl">
+              <TabsTrigger value="descricao" className="text-sm font-bold py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg">Descrição</TabsTrigger>
+              <TabsTrigger value="especificacoes" className="text-sm font-bold py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg">Especificações</TabsTrigger>
+              <TabsTrigger value="cuidados" className="text-sm font-bold py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg">Cuidados</TabsTrigger>
             </TabsList>
 
             <TabsContent value="descricao" className="mt-4 space-y-4">
               <div className="space-y-3">
-                <p className="text-sm leading-relaxed">
-                  Vista-se com estilo e mostre seu amor por <span className="font-bold text-yellow-600">FNAF</span>! Esta camiseta exclusiva traz a 
-                  <span className="font-bold"> TOY-CHICA</span> em uma arte <span className="text-yellow-600 font-bold">vibrante e detalhada</span>.
+                <p className="text-sm leading-relaxed text-gray-500">
+                  Vista-se com estilo e mostre seu amor por <span className="font-medium text-yellow-600">FNAF</span>! Esta camiseta exclusiva traz a 
+                  <span className="font-medium text-gray-700"> TOY-CHICA</span> em uma arte <span className="text-yellow-600 font-medium">vibrante e detalhada</span>.
                 </p>
-                <p className="text-sm leading-relaxed">
-                  Perfeita para <span className="font-bold">eventos, festas temáticas</span> ou para usar no dia a dia com muito 
-                  <span className="text-yellow-600 font-bold"> estilo e personalidade</span>.
+                <p className="text-sm leading-relaxed text-gray-500">
+                  Perfeita para <span className="font-medium text-gray-700">eventos, festas temáticas</span> ou para usar no dia a dia com muito 
+                  <span className="text-yellow-600 font-medium"> estilo e personalidade</span>.
                 </p>
                 <div className="bg-yellow-50 rounded-lg p-3 border-l-4 border-yellow-400">
-                  <p className="text-sm font-medium text-yellow-800">
+                  <p className="text-sm font-medium text-yellow-700">
                     🎮 Ideal para fãs que querem se destacar com uma peça única e exclusiva!
                   </p>
                 </div>
-                <p className="text-sm leading-relaxed">
-                  Produzida com <span className="font-bold">sublimação de alta qualidade</span>, garantindo cores vivas que 
-                  <span className="text-yellow-600 font-bold"> não desbotam</span> mesmo após várias lavagens.
+                <p className="text-sm leading-relaxed text-gray-500">
+                  Produzida com <span className="font-medium text-gray-700">sublimação de alta qualidade</span>, garantindo cores vivas que 
+                  <span className="text-yellow-600 font-medium"> não desbotam</span> mesmo após várias lavagens.
                 </p>
               </div>
             </TabsContent>
@@ -408,34 +404,40 @@ const DetalhesModelo = () => {
             </TabsContent>
           </Tabs>
 
-          <div className="border-t border-border" />
+        </div>
 
-          {/* Você também pode gostar */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold">Você também pode gostar:</h3>
-            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+        {/* Você também pode gostar - Blue Section */}
+        <div className="relative">
+          <WaveDivider variant="white-to-blue" />
+          <div className="gradient-blue py-10 px-4">
+            <h3 className="text-lg font-bold text-white mb-6 text-center">Você também pode gostar:</h3>
+            <Carousel opts={{ align: "start", loop: true }} className="w-full max-w-4xl mx-auto">
               <CarouselContent className="-ml-2">
                 {modelosSugeridos.map(m => (
                   <CarouselItem key={m.id} className="pl-2 basis-1/2 md:basis-1/3">
                     <Link to={`/modelo/${m.id}`} className="block">
-                      <div className="rounded-xl border border-border overflow-hidden bg-card hover:shadow-lg transition-shadow">
+                      <div className="rounded-xl overflow-hidden bg-white hover:shadow-lg transition-shadow">
                         <div className="aspect-square bg-secondary flex items-center justify-center">
                           <span className="text-muted-foreground text-sm font-bold">IMG</span>
                         </div>
                         <div className="p-3">
                           <p className="text-xs text-primary font-bold mb-1">{m.categoria}</p>
-                          <p className="text-sm font-bold line-clamp-2 mb-2">{m.nome}</p>
-                          <p className="text-sm font-extrabold">R$ {m.preco.toFixed(2).replace(".", ",")}</p>
+                          <p className="text-sm font-bold line-clamp-2 mb-2 text-foreground">{m.nome}</p>
+                          <p className="text-sm font-extrabold text-foreground">R$ {m.preco.toFixed(2).replace(".", ",")}</p>
                         </div>
                       </div>
                     </Link>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-0" />
-              <CarouselNext className="right-0" />
+              <CarouselPrevious className="left-0 bg-white/90" />
+              <CarouselNext className="right-0 bg-white/90" />
             </Carousel>
           </div>
+          <WaveDivider variant="blue-to-white" />
+        </div>
+
+        <div className="p-4">
 
           <div className="border-t border-border" />
 
