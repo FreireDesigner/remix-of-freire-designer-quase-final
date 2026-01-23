@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Heart, Share2, Star, User, Crown, Sparkles, Truck, Check, Gift, MessageCircle, ThermometerSun, Shirt, WashingMachine, Wind, CircleOff, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import WaveDivider from "@/components/WaveDivider";
-import Autoplay from "embla-carousel-autoplay";
 const modelosData: Record<string, {
   nome: string;
   descricao: string;
@@ -103,6 +101,31 @@ const DetalhesModelo = () => {
     const msg = `Olá! Pedido:\n📦 ${modelo.nome}\n👕 Tam: ${tamanhoSelecionado} | Tecido: ${tecido.nome}\n🔢 Qtd: ${brindeSelecionado || quantidade}\n${edicaoExclusiva ? "✨ Com edição exclusiva\n" : ""}💰 Total: R$ ${calcularTotal().toFixed(2).replace(".", ",")}`;
     window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, "_blank");
   };
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const duplicatedModelos = [...modelosSugeridos, ...modelosSugeridos];
+
+  useEffect(() => {
+    const scroll = scrollRef.current;
+    if (!scroll) return;
+
+    let animationId: number;
+    let scrollPos = 0;
+    const speed = 0.5;
+
+    const animate = () => {
+      scrollPos += speed;
+      const maxScroll = scroll.scrollWidth / 2;
+      if (scrollPos >= maxScroll) {
+        scrollPos = 0;
+      }
+      scroll.scrollLeft = scrollPos;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -412,28 +435,25 @@ const DetalhesModelo = () => {
           <WaveDivider variant="white-to-blue" />
           <div className="gradient-blue py-10 px-4">
             <h3 className="text-lg font-bold text-white mb-6 text-center">Você também pode gostar:</h3>
-            <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]} className="w-full max-w-4xl mx-auto">
-              <CarouselContent className="-ml-2">
-                {modelosSugeridos.map(m => (
-                  <CarouselItem key={m.id} className="pl-2 basis-1/2 md:basis-1/3">
-                    <Link to={`/modelo/${m.id}`} className="block">
-                      <div className="rounded-xl overflow-hidden bg-white hover:shadow-lg transition-shadow">
-                        <div className="aspect-square bg-secondary flex items-center justify-center">
-                          <span className="text-muted-foreground text-sm font-bold">IMG</span>
-                        </div>
-                        <div className="p-3">
-                          <p className="text-xs text-primary font-bold mb-1">{m.categoria}</p>
-                          <p className="text-sm font-bold line-clamp-2 mb-2 text-foreground">{m.nome}</p>
-                          <p className="text-sm font-extrabold text-foreground">R$ {m.preco.toFixed(2).replace(".", ",")}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-0 bg-white/90" />
-              <CarouselNext className="right-0 bg-white/90" />
-            </Carousel>
+            <div
+              ref={scrollRef}
+              className="flex gap-3 overflow-x-hidden max-w-4xl mx-auto"
+            >
+              {duplicatedModelos.map((m, index) => (
+                <Link key={index} to={`/modelo/${m.id}`} className="block min-w-[160px] max-w-[160px]">
+                  <div className="rounded-xl overflow-hidden bg-white hover:shadow-lg transition-shadow">
+                    <div className="aspect-square bg-secondary flex items-center justify-center">
+                      <span className="text-muted-foreground text-sm font-bold">IMG</span>
+                    </div>
+                    <div className="p-3">
+                      <p className="text-xs text-primary font-bold mb-1">{m.categoria}</p>
+                      <p className="text-sm font-bold line-clamp-2 mb-2 text-foreground">{m.nome}</p>
+                      <p className="text-sm font-extrabold text-foreground">R$ {m.preco.toFixed(2).replace(".", ",")}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
           <WaveDivider variant="blue-to-white" />
         </div>
