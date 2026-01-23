@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import WaveDivider from "@/components/WaveDivider";
+import Autoplay from "embla-carousel-autoplay";
 const modelosData: Record<string, {
   nome: string;
   descricao: string;
@@ -411,7 +412,7 @@ const DetalhesModelo = () => {
           <WaveDivider variant="white-to-blue" />
           <div className="gradient-blue py-10 px-4">
             <h3 className="text-lg font-bold text-white mb-6 text-center">Você também pode gostar:</h3>
-            <Carousel opts={{ align: "start", loop: true }} className="w-full max-w-4xl mx-auto">
+            <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]} className="w-full max-w-4xl mx-auto">
               <CarouselContent className="-ml-2">
                 {modelosSugeridos.map(m => (
                   <CarouselItem key={m.id} className="pl-2 basis-1/2 md:basis-1/3">
