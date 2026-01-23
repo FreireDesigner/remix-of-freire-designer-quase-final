@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import WaveDivider from "@/components/WaveDivider";
-import { Trophy, ArrowRight, Users, Shirt, MessageCircle, Zap, ChevronDown } from "lucide-react";
+import { Trophy, ArrowRight, Users, Shirt, MessageCircle, Zap, Crown } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -18,49 +18,49 @@ const stats = [
 ];
 
 const bestSellers = [
-  { name: "Modelo Best Seller 10", sales: "330+ vendidos", price: 89.90 },
-  { name: "Modelo Best Seller 11", sales: "350+ vendidos", price: 94.90 },
-  { name: "Modelo Best Seller 12", sales: "280+ vendidos", price: 79.90 },
-  { name: "Modelo Best Seller 13", sales: "310+ vendidos", price: 84.90 },
+  { name: "Modelo Best Seller 10", sales: "330+ vendidos", price: 89.90, isExclusive: true },
+  { name: "Modelo Best Seller 11", sales: "350+ vendidos", price: 94.90, isExclusive: false },
+  { name: "Modelo Best Seller 12", sales: "280+ vendidos", price: 79.90, isExclusive: false },
+  { name: "Modelo Best Seller 13", sales: "310+ vendidos", price: 84.90, isExclusive: true },
 ];
 
 const mascotes = [
-  { name: "Interclasse com Mascote 1", type: "Leão", price: 89.90 },
-  { name: "Interclasse com Mascote 2", type: "Águia", price: 89.90 },
-  { name: "Interclasse com Mascote 3", type: "Tigre", price: 94.90 },
-  { name: "Interclasse com Mascote 4", type: "Lobo", price: 89.90 },
-  { name: "Interclasse com Mascote 5", type: "Pantera", price: 94.90 },
-  { name: "Interclasse com Mascote 6", type: "Urso", price: 89.90 },
-  { name: "Interclasse com Mascote 7", type: "Cobra", price: 84.90 },
-  { name: "Interclasse com Mascote 8", type: "Dragão", price: 99.90 },
-  { name: "Interclasse com Mascote 9", type: "Fênix", price: 99.90 },
-  { name: "Interclasse com Mascote 10", type: "Tubarão", price: 89.90 },
+  { name: "Interclasse com Mascote 1", type: "Leão", price: 89.90, isExclusive: true },
+  { name: "Interclasse com Mascote 2", type: "Águia", price: 89.90, isExclusive: false },
+  { name: "Interclasse com Mascote 3", type: "Tigre", price: 94.90, isExclusive: false },
+  { name: "Interclasse com Mascote 4", type: "Lobo", price: 89.90, isExclusive: true },
+  { name: "Interclasse com Mascote 5", type: "Pantera", price: 94.90, isExclusive: false },
+  { name: "Interclasse com Mascote 6", type: "Urso", price: 89.90, isExclusive: false },
+  { name: "Interclasse com Mascote 7", type: "Cobra", price: 84.90, isExclusive: false },
+  { name: "Interclasse com Mascote 8", type: "Dragão", price: 99.90, isExclusive: true },
+  { name: "Interclasse com Mascote 9", type: "Fênix", price: 99.90, isExclusive: false },
+  { name: "Interclasse com Mascote 10", type: "Tubarão", price: 89.90, isExclusive: false },
 ];
 
 const timesEsportivos = [
-  { name: "Time Esportivo 1", type: "Futebol", price: 89.90 },
-  { name: "Time Esportivo 2", type: "Basquete", price: 89.90 },
-  { name: "Time Esportivo 3", type: "Vôlei", price: 84.90 },
-  { name: "Time Esportivo 4", type: "Handebol", price: 84.90 },
-  { name: "Time Esportivo 5", type: "Natação", price: 79.90 },
-  { name: "Time Esportivo 6", type: "Tênis", price: 89.90 },
-  { name: "Time Esportivo 7", type: "Atletismo", price: 84.90 },
-  { name: "Time Esportivo 8", type: "Judô", price: 94.90 },
-  { name: "Time Esportivo 9", type: "Karatê", price: 94.90 },
-  { name: "Time Esportivo 10", type: "Ciclismo", price: 89.90 },
+  { name: "Time Esportivo 1", type: "Futebol", price: 89.90, isExclusive: false },
+  { name: "Time Esportivo 2", type: "Basquete", price: 89.90, isExclusive: true },
+  { name: "Time Esportivo 3", type: "Vôlei", price: 84.90, isExclusive: false },
+  { name: "Time Esportivo 4", type: "Handebol", price: 84.90, isExclusive: false },
+  { name: "Time Esportivo 5", type: "Natação", price: 79.90, isExclusive: true },
+  { name: "Time Esportivo 6", type: "Tênis", price: 89.90, isExclusive: false },
+  { name: "Time Esportivo 7", type: "Atletismo", price: 84.90, isExclusive: false },
+  { name: "Time Esportivo 8", type: "Judô", price: 94.90, isExclusive: false },
+  { name: "Time Esportivo 9", type: "Karatê", price: 94.90, isExclusive: true },
+  { name: "Time Esportivo 10", type: "Ciclismo", price: 89.90, isExclusive: false },
 ];
 
 const personagens = [
-  { name: "Personagem 1", type: "Super-Heróis", price: 94.90 },
-  { name: "Personagem 2", type: "Anime", price: 89.90 },
-  { name: "Personagem 3", type: "Games", price: 89.90 },
-  { name: "Personagem 4", type: "Filmes", price: 94.90 },
-  { name: "Personagem 5", type: "Séries", price: 89.90 },
-  { name: "Personagem 6", type: "Mangá", price: 89.90 },
-  { name: "Personagem 7", type: "Quadrinhos", price: 94.90 },
-  { name: "Personagem 8", type: "Desenhos", price: 84.90 },
-  { name: "Personagem 9", type: "E-Sports", price: 99.90 },
-  { name: "Personagem 10", type: "Streamers", price: 89.90 },
+  { name: "Personagem 1", type: "Super-Heróis", price: 94.90, isExclusive: true },
+  { name: "Personagem 2", type: "Anime", price: 89.90, isExclusive: false },
+  { name: "Personagem 3", type: "Games", price: 89.90, isExclusive: true },
+  { name: "Personagem 4", type: "Filmes", price: 94.90, isExclusive: false },
+  { name: "Personagem 5", type: "Séries", price: 89.90, isExclusive: false },
+  { name: "Personagem 6", type: "Mangá", price: 89.90, isExclusive: false },
+  { name: "Personagem 7", type: "Quadrinhos", price: 94.90, isExclusive: true },
+  { name: "Personagem 8", type: "Desenhos", price: 84.90, isExclusive: false },
+  { name: "Personagem 9", type: "E-Sports", price: 99.90, isExclusive: false },
+  { name: "Personagem 10", type: "Streamers", price: 89.90, isExclusive: false },
 ];
 
 const inclusos = [
@@ -138,14 +138,26 @@ const Interclasse = () => {
 
           <div className="grid grid-cols-2 gap-3">
             {bestSellers.map((item, index) => (
-              <div key={index} className="bg-[#f8f9fc] rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] bg-[#f0f2f7] flex items-center justify-center">
-                  <span className="text-[#c5c9d6] text-xs font-medium">SELLER_INTERCLASSE</span>
+              <div key={index} className={`rounded-xl overflow-hidden shadow-md ${item.isExclusive ? 'border-2 border-amber-400' : 'bg-card'}`}>
+                <div className="relative bg-secondary aspect-square flex items-center justify-center">
+                  {item.isExclusive && (
+                    <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
+                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                    </span>
+                  )}
+                  <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
-                <div className="p-3">
-                  <h3 className="font-bold text-foreground text-sm leading-tight">{item.name}</h3>
-                  <p className="text-foreground/60 text-xs mt-1">{item.sales}</p>
-                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                <div className="p-3 bg-card">
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
+                  <p className="text-muted-foreground text-[10px] mb-1">{item.sales}</p>
+                  <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
+                    item.isExclusive 
+                      ? "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:opacity-90 text-white"
+                      : "bg-primary hover:bg-primary/90 text-primary-foreground"
+                  }`}>
+                    Ver Detalhes
+                  </button>
                 </div>
               </div>
             ))}
@@ -165,17 +177,29 @@ const Interclasse = () => {
 
           <div className="grid grid-cols-2 gap-3 mb-6">
             {mascotes.slice(0, visibleMascotes).map((item, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] bg-[#fdf2f2] flex items-center justify-center">
-                  <span className="text-[#e8c5c5] text-xs font-medium">MASCOTE_INTERCLASSE</span>
+              <div key={index} className={`rounded-xl overflow-hidden shadow-md ${item.isExclusive ? 'border-2 border-amber-400' : 'bg-card'}`}>
+                <div className="relative bg-secondary aspect-square flex items-center justify-center">
+                  {item.isExclusive && (
+                    <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
+                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                    </span>
+                  )}
+                  <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
-                <div className="p-3">
-                  <h3 className="font-bold text-foreground text-sm leading-tight">{item.name}</h3>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Trophy className="w-3.5 h-3.5 text-foreground/60" />
-                    <span className="text-foreground/60 text-xs">{item.type}</span>
+                <div className="p-3 bg-card">
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
+                  <div className="flex items-center gap-1 mb-1">
+                    <Trophy className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
                   </div>
-                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
+                    item.isExclusive 
+                      ? "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:opacity-90 text-white"
+                      : "bg-primary hover:bg-primary/90 text-primary-foreground"
+                  }`}>
+                    Ver Detalhes
+                  </button>
                 </div>
               </div>
             ))}
@@ -205,17 +229,29 @@ const Interclasse = () => {
 
           <div className="grid grid-cols-2 gap-3 mb-6">
             {timesEsportivos.slice(0, visibleTimes).map((item, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border/30">
-                <div className="aspect-[4/3] bg-[#ecfdf5] flex items-center justify-center">
-                  <span className="text-[#a7f3d0] text-xs font-medium">ESPORTE_INTERCLASSE</span>
+              <div key={index} className={`rounded-xl overflow-hidden shadow-md ${item.isExclusive ? 'border-2 border-amber-400' : 'bg-card'}`}>
+                <div className="relative bg-secondary aspect-square flex items-center justify-center">
+                  {item.isExclusive && (
+                    <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
+                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                    </span>
+                  )}
+                  <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
-                <div className="p-3">
-                  <h3 className="font-bold text-foreground text-sm leading-tight">{item.name}</h3>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Trophy className="w-3.5 h-3.5 text-foreground/60" />
-                    <span className="text-foreground/60 text-xs">{item.type}</span>
+                <div className="p-3 bg-card">
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
+                  <div className="flex items-center gap-1 mb-1">
+                    <Trophy className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
                   </div>
-                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
+                    item.isExclusive 
+                      ? "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:opacity-90 text-white"
+                      : "bg-primary hover:bg-primary/90 text-primary-foreground"
+                  }`}>
+                    Ver Detalhes
+                  </button>
                 </div>
               </div>
             ))}
@@ -245,17 +281,29 @@ const Interclasse = () => {
 
           <div className="grid grid-cols-2 gap-3 mb-6">
             {personagens.slice(0, visiblePersonagens).map((item, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] bg-[#fdf2f2] flex items-center justify-center">
-                  <span className="text-[#e8c5c5] text-xs font-medium">PERSONAGEM_INTERCLASSE</span>
+              <div key={index} className={`rounded-xl overflow-hidden shadow-md ${item.isExclusive ? 'border-2 border-amber-400' : 'bg-card'}`}>
+                <div className="relative bg-secondary aspect-square flex items-center justify-center">
+                  {item.isExclusive && (
+                    <span className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
+                      <Crown className="w-4 h-4 text-foreground" fill="currentColor" />
+                    </span>
+                  )}
+                  <span className="text-muted-foreground text-xs font-bold">TAQUI</span>
                 </div>
-                <div className="p-3">
-                  <h3 className="font-bold text-foreground text-sm leading-tight">{item.name}</h3>
-                  <div className="flex items-center gap-1 mt-1">
-                    <MessageCircle className="w-3.5 h-3.5 text-foreground/60" />
-                    <span className="text-foreground/60 text-xs">{item.type}</span>
+                <div className="p-3 bg-card">
+                  <h3 className="font-extrabold text-foreground text-xs leading-tight mb-1 line-clamp-2">{item.name}</h3>
+                  <div className="flex items-center gap-1 mb-1">
+                    <MessageCircle className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-muted-foreground text-[10px]">{item.type}</span>
                   </div>
-                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <p className="text-sm font-extrabold text-foreground">R$ {item.price.toFixed(2).replace(".", ",")}</p>
+                  <button className={`w-full mt-2 py-2 rounded-lg font-bold text-xs transition-colors ${
+                    item.isExclusive 
+                      ? "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:opacity-90 text-white"
+                      : "bg-primary hover:bg-primary/90 text-primary-foreground"
+                  }`}>
+                    Ver Detalhes
+                  </button>
                 </div>
               </div>
             ))}
