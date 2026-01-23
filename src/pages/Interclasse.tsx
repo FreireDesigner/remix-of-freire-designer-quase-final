@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -17,31 +18,49 @@ const stats = [
 ];
 
 const bestSellers = [
-  { name: "Modelo Best Seller 10", sales: "330+ vendidos" },
-  { name: "Modelo Best Seller 11", sales: "350+ vendidos" },
-  { name: "Modelo Best Seller 12", sales: "280+ vendidos" },
-  { name: "Modelo Best Seller 13", sales: "310+ vendidos" },
+  { name: "Modelo Best Seller 10", sales: "330+ vendidos", price: 89.90 },
+  { name: "Modelo Best Seller 11", sales: "350+ vendidos", price: 94.90 },
+  { name: "Modelo Best Seller 12", sales: "280+ vendidos", price: 79.90 },
+  { name: "Modelo Best Seller 13", sales: "310+ vendidos", price: 84.90 },
 ];
 
 const mascotes = [
-  { name: "Interclasse com Mascote 1", type: "Leão" },
-  { name: "Interclasse com Mascote 2", type: "Águia" },
-  { name: "Interclasse com Mascote 3", type: "Tigre" },
-  { name: "Interclasse com Mascote 4", type: "Lobo" },
+  { name: "Interclasse com Mascote 1", type: "Leão", price: 89.90 },
+  { name: "Interclasse com Mascote 2", type: "Águia", price: 89.90 },
+  { name: "Interclasse com Mascote 3", type: "Tigre", price: 94.90 },
+  { name: "Interclasse com Mascote 4", type: "Lobo", price: 89.90 },
+  { name: "Interclasse com Mascote 5", type: "Pantera", price: 94.90 },
+  { name: "Interclasse com Mascote 6", type: "Urso", price: 89.90 },
+  { name: "Interclasse com Mascote 7", type: "Cobra", price: 84.90 },
+  { name: "Interclasse com Mascote 8", type: "Dragão", price: 99.90 },
+  { name: "Interclasse com Mascote 9", type: "Fênix", price: 99.90 },
+  { name: "Interclasse com Mascote 10", type: "Tubarão", price: 89.90 },
 ];
 
 const timesEsportivos = [
-  { name: "Time Esportivo 1", type: "Futebol" },
-  { name: "Time Esportivo 2", type: "Basquete" },
-  { name: "Time Esportivo 3", type: "Vôlei" },
-  { name: "Time Esportivo 4", type: "Handebol" },
+  { name: "Time Esportivo 1", type: "Futebol", price: 89.90 },
+  { name: "Time Esportivo 2", type: "Basquete", price: 89.90 },
+  { name: "Time Esportivo 3", type: "Vôlei", price: 84.90 },
+  { name: "Time Esportivo 4", type: "Handebol", price: 84.90 },
+  { name: "Time Esportivo 5", type: "Natação", price: 79.90 },
+  { name: "Time Esportivo 6", type: "Tênis", price: 89.90 },
+  { name: "Time Esportivo 7", type: "Atletismo", price: 84.90 },
+  { name: "Time Esportivo 8", type: "Judô", price: 94.90 },
+  { name: "Time Esportivo 9", type: "Karatê", price: 94.90 },
+  { name: "Time Esportivo 10", type: "Ciclismo", price: 89.90 },
 ];
 
 const personagens = [
-  { name: "Personagem 1", type: "Super-Heróis" },
-  { name: "Personagem 2", type: "Anime" },
-  { name: "Personagem 3", type: "Games" },
-  { name: "Personagem 4", type: "Filmes" },
+  { name: "Personagem 1", type: "Super-Heróis", price: 94.90 },
+  { name: "Personagem 2", type: "Anime", price: 89.90 },
+  { name: "Personagem 3", type: "Games", price: 89.90 },
+  { name: "Personagem 4", type: "Filmes", price: 94.90 },
+  { name: "Personagem 5", type: "Séries", price: 89.90 },
+  { name: "Personagem 6", type: "Mangá", price: 89.90 },
+  { name: "Personagem 7", type: "Quadrinhos", price: 94.90 },
+  { name: "Personagem 8", type: "Desenhos", price: 84.90 },
+  { name: "Personagem 9", type: "E-Sports", price: 99.90 },
+  { name: "Personagem 10", type: "Streamers", price: 89.90 },
 ];
 
 const inclusos = [
@@ -62,6 +81,10 @@ const faqItems = [
 ];
 
 const Interclasse = () => {
+  const [visibleMascotes, setVisibleMascotes] = useState(4);
+  const [visibleTimes, setVisibleTimes] = useState(4);
+  const [visiblePersonagens, setVisiblePersonagens] = useState(4);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -122,6 +145,7 @@ const Interclasse = () => {
                 <div className="p-3">
                   <h3 className="font-bold text-foreground text-sm leading-tight">{item.name}</h3>
                   <p className="text-foreground/60 text-xs mt-1">{item.sales}</p>
+                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                 </div>
               </div>
             ))}
@@ -140,7 +164,7 @@ const Interclasse = () => {
           </p>
 
           <div className="grid grid-cols-2 gap-3 mb-6">
-            {mascotes.map((item, index) => (
+            {mascotes.slice(0, visibleMascotes).map((item, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden">
                 <div className="aspect-[4/3] bg-[#fdf2f2] flex items-center justify-center">
                   <span className="text-[#e8c5c5] text-xs font-medium">MASCOTE_INTERCLASSE</span>
@@ -151,15 +175,21 @@ const Interclasse = () => {
                     <Trophy className="w-3.5 h-3.5 text-foreground/60" />
                     <span className="text-foreground/60 text-xs">{item.type}</span>
                   </div>
+                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <button className="w-full bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg">
-            <span>Ver Mais</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
+          {visibleMascotes < mascotes.length && (
+            <button 
+              onClick={() => setVisibleMascotes(prev => Math.min(prev + 6, mascotes.length))}
+              className="w-full bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
+            >
+              <span>Ver Mais</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
         </section>
 
         <WaveDivider variant="blue-to-white" />
@@ -173,8 +203,8 @@ const Interclasse = () => {
             Para as turmas que amam esporte e competição
           </p>
 
-          <div className="grid grid-cols-2 gap-3">
-            {timesEsportivos.map((item, index) => (
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {timesEsportivos.slice(0, visibleTimes).map((item, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border/30">
                 <div className="aspect-[4/3] bg-[#ecfdf5] flex items-center justify-center">
                   <span className="text-[#a7f3d0] text-xs font-medium">ESPORTE_INTERCLASSE</span>
@@ -185,10 +215,21 @@ const Interclasse = () => {
                     <Trophy className="w-3.5 h-3.5 text-foreground/60" />
                     <span className="text-foreground/60 text-xs">{item.type}</span>
                   </div>
+                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                 </div>
               </div>
             ))}
           </div>
+
+          {visibleTimes < timesEsportivos.length && (
+            <button 
+              onClick={() => setVisibleTimes(prev => Math.min(prev + 6, timesEsportivos.length))}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
+            >
+              <span>Ver Mais</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
         </section>
 
         <WaveDivider variant="white-to-blue" />
@@ -203,7 +244,7 @@ const Interclasse = () => {
           </p>
 
           <div className="grid grid-cols-2 gap-3 mb-6">
-            {personagens.map((item, index) => (
+            {personagens.slice(0, visiblePersonagens).map((item, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden">
                 <div className="aspect-[4/3] bg-[#fdf2f2] flex items-center justify-center">
                   <span className="text-[#e8c5c5] text-xs font-medium">PERSONAGEM_INTERCLASSE</span>
@@ -214,15 +255,21 @@ const Interclasse = () => {
                     <MessageCircle className="w-3.5 h-3.5 text-foreground/60" />
                     <span className="text-foreground/60 text-xs">{item.type}</span>
                   </div>
+                  <p className="text-[#2563eb] font-bold text-sm mt-1">R$ {item.price.toFixed(2).replace(".", ",")}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <button className="w-full bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg">
-            <span>Ver Mais</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
+          {visiblePersonagens < personagens.length && (
+            <button 
+              onClick={() => setVisiblePersonagens(prev => Math.min(prev + 6, personagens.length))}
+              className="w-full bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg"
+            >
+              <span>Ver Mais</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
         </section>
 
         <WaveDivider variant="blue-to-white" />
