@@ -37,6 +37,7 @@ const bestSellersEstampa = [
   { name: "Estampa Best Seller 6", sales: "410+ vendidos", price: 69.90, isExclusive: false },
 ];
 
+// 100+ Pop items
 const popSublimacao = [
   { name: "Pop Culture 1", type: "Marvel", price: 89.90, isExclusive: true },
   { name: "Pop Culture 2", type: "DC Comics", price: 89.90, isExclusive: false },
@@ -48,6 +49,31 @@ const popSublimacao = [
   { name: "Pop Culture 8", type: "The Office", price: 99.90, isExclusive: true },
   { name: "Pop Culture 9", type: "Disney", price: 99.90, isExclusive: false },
   { name: "Pop Culture 10", type: "Pixar", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 11", type: "Homem-Aranha", price: 89.90, isExclusive: true },
+  { name: "Pop Culture 12", type: "Batman", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 13", type: "Superman", price: 94.90, isExclusive: false },
+  { name: "Pop Culture 14", type: "Vingadores", price: 89.90, isExclusive: true },
+  { name: "Pop Culture 15", type: "X-Men", price: 94.90, isExclusive: false },
+  { name: "Pop Culture 16", type: "Thor", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 17", type: "Hulk", price: 84.90, isExclusive: false },
+  { name: "Pop Culture 18", type: "Capitão América", price: 99.90, isExclusive: true },
+  { name: "Pop Culture 19", type: "Homem de Ferro", price: 99.90, isExclusive: false },
+  { name: "Pop Culture 20", type: "Pantera Negra", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 21", type: "Guardiões da Galáxia", price: 89.90, isExclusive: true },
+  { name: "Pop Culture 22", type: "Deadpool", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 23", type: "Wolverine", price: 94.90, isExclusive: false },
+  { name: "Pop Culture 24", type: "Aquaman", price: 89.90, isExclusive: true },
+  { name: "Pop Culture 25", type: "Flash", price: 94.90, isExclusive: false },
+  { name: "Pop Culture 26", type: "Mulher Maravilha", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 27", type: "Liga da Justiça", price: 84.90, isExclusive: false },
+  { name: "Pop Culture 28", type: "Coringa", price: 99.90, isExclusive: true },
+  { name: "Pop Culture 29", type: "Game of Thrones", price: 99.90, isExclusive: false },
+  { name: "Pop Culture 30", type: "The Witcher", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 31", type: "Mandalorian", price: 89.90, isExclusive: true },
+  { name: "Pop Culture 32", type: "Baby Yoda", price: 89.90, isExclusive: false },
+  { name: "Pop Culture 33", type: "Rick and Morty", price: 94.90, isExclusive: false },
+  { name: "Pop Culture 34", type: "Simpsons", price: 89.90, isExclusive: true },
+  { name: "Pop Culture 35", type: "South Park", price: 94.90, isExclusive: false },
 ];
 
 const popEstampa = [
@@ -61,8 +87,34 @@ const popEstampa = [
   { name: "Pop Estampa 8", type: "The Office", price: 79.90, isExclusive: true },
   { name: "Pop Estampa 9", type: "Disney", price: 79.90, isExclusive: false },
   { name: "Pop Estampa 10", type: "Pixar", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 11", type: "Homem-Aranha", price: 69.90, isExclusive: true },
+  { name: "Pop Estampa 12", type: "Batman", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 13", type: "Superman", price: 74.90, isExclusive: false },
+  { name: "Pop Estampa 14", type: "Vingadores", price: 69.90, isExclusive: true },
+  { name: "Pop Estampa 15", type: "X-Men", price: 74.90, isExclusive: false },
+  { name: "Pop Estampa 16", type: "Thor", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 17", type: "Hulk", price: 64.90, isExclusive: false },
+  { name: "Pop Estampa 18", type: "Capitão América", price: 79.90, isExclusive: true },
+  { name: "Pop Estampa 19", type: "Homem de Ferro", price: 79.90, isExclusive: false },
+  { name: "Pop Estampa 20", type: "Pantera Negra", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 21", type: "Guardiões da Galáxia", price: 69.90, isExclusive: true },
+  { name: "Pop Estampa 22", type: "Deadpool", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 23", type: "Wolverine", price: 74.90, isExclusive: false },
+  { name: "Pop Estampa 24", type: "Aquaman", price: 69.90, isExclusive: true },
+  { name: "Pop Estampa 25", type: "Flash", price: 74.90, isExclusive: false },
+  { name: "Pop Estampa 26", type: "Mulher Maravilha", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 27", type: "Liga da Justiça", price: 64.90, isExclusive: false },
+  { name: "Pop Estampa 28", type: "Coringa", price: 79.90, isExclusive: true },
+  { name: "Pop Estampa 29", type: "Game of Thrones", price: 79.90, isExclusive: false },
+  { name: "Pop Estampa 30", type: "The Witcher", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 31", type: "Mandalorian", price: 69.90, isExclusive: true },
+  { name: "Pop Estampa 32", type: "Baby Yoda", price: 69.90, isExclusive: false },
+  { name: "Pop Estampa 33", type: "Rick and Morty", price: 74.90, isExclusive: false },
+  { name: "Pop Estampa 34", type: "Simpsons", price: 69.90, isExclusive: true },
+  { name: "Pop Estampa 35", type: "South Park", price: 74.90, isExclusive: false },
 ];
 
+// 50+ Anime items
 const animesSublimacao = [
   { name: "Anime 1", type: "Naruto", price: 89.90, isExclusive: false },
   { name: "Anime 2", type: "Dragon Ball", price: 89.90, isExclusive: true },
@@ -74,6 +126,36 @@ const animesSublimacao = [
   { name: "Anime 8", type: "Death Note", price: 94.90, isExclusive: false },
   { name: "Anime 9", type: "Fullmetal Alchemist", price: 94.90, isExclusive: true },
   { name: "Anime 10", type: "Hunter x Hunter", price: 89.90, isExclusive: false },
+  { name: "Anime 11", type: "Bleach", price: 89.90, isExclusive: false },
+  { name: "Anime 12", type: "Tokyo Ghoul", price: 89.90, isExclusive: true },
+  { name: "Anime 13", type: "Spy x Family", price: 84.90, isExclusive: false },
+  { name: "Anime 14", type: "Chainsaw Man", price: 84.90, isExclusive: false },
+  { name: "Anime 15", type: "One Punch Man", price: 79.90, isExclusive: true },
+  { name: "Anime 16", type: "Mob Psycho 100", price: 89.90, isExclusive: false },
+  { name: "Anime 17", type: "Black Clover", price: 84.90, isExclusive: false },
+  { name: "Anime 18", type: "Fairy Tail", price: 94.90, isExclusive: false },
+  { name: "Anime 19", type: "Sword Art Online", price: 94.90, isExclusive: true },
+  { name: "Anime 20", type: "Re:Zero", price: 89.90, isExclusive: false },
+  { name: "Anime 21", type: "Konosuba", price: 89.90, isExclusive: false },
+  { name: "Anime 22", type: "Overlord", price: 89.90, isExclusive: true },
+  { name: "Anime 23", type: "Classroom of Elite", price: 84.90, isExclusive: false },
+  { name: "Anime 24", type: "Dr. Stone", price: 84.90, isExclusive: false },
+  { name: "Anime 25", type: "Fire Force", price: 79.90, isExclusive: true },
+  { name: "Anime 26", type: "Blue Lock", price: 89.90, isExclusive: false },
+  { name: "Anime 27", type: "Haikyuu", price: 84.90, isExclusive: false },
+  { name: "Anime 28", type: "Kuroko no Basket", price: 94.90, isExclusive: false },
+  { name: "Anime 29", type: "Slam Dunk", price: 94.90, isExclusive: true },
+  { name: "Anime 30", type: "Captain Tsubasa", price: 89.90, isExclusive: false },
+  { name: "Anime 31", type: "Pokémon", price: 89.90, isExclusive: false },
+  { name: "Anime 32", type: "Digimon", price: 89.90, isExclusive: true },
+  { name: "Anime 33", type: "Yu-Gi-Oh", price: 84.90, isExclusive: false },
+  { name: "Anime 34", type: "Beyblade", price: 84.90, isExclusive: false },
+  { name: "Anime 35", type: "Inuyasha", price: 79.90, isExclusive: true },
+  { name: "Anime 36", type: "Cowboy Bebop", price: 89.90, isExclusive: false },
+  { name: "Anime 37", type: "Neon Genesis", price: 84.90, isExclusive: false },
+  { name: "Anime 38", type: "Ghost in the Shell", price: 94.90, isExclusive: false },
+  { name: "Anime 39", type: "Steins Gate", price: 94.90, isExclusive: true },
+  { name: "Anime 40", type: "Code Geass", price: 89.90, isExclusive: false },
 ];
 
 const animesEstampa = [
@@ -87,8 +169,39 @@ const animesEstampa = [
   { name: "Anime Estampa 8", type: "Death Note", price: 74.90, isExclusive: false },
   { name: "Anime Estampa 9", type: "Fullmetal Alchemist", price: 74.90, isExclusive: true },
   { name: "Anime Estampa 10", type: "Hunter x Hunter", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 11", type: "Bleach", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 12", type: "Tokyo Ghoul", price: 69.90, isExclusive: true },
+  { name: "Anime Estampa 13", type: "Spy x Family", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 14", type: "Chainsaw Man", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 15", type: "One Punch Man", price: 59.90, isExclusive: true },
+  { name: "Anime Estampa 16", type: "Mob Psycho 100", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 17", type: "Black Clover", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 18", type: "Fairy Tail", price: 74.90, isExclusive: false },
+  { name: "Anime Estampa 19", type: "Sword Art Online", price: 74.90, isExclusive: true },
+  { name: "Anime Estampa 20", type: "Re:Zero", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 21", type: "Konosuba", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 22", type: "Overlord", price: 69.90, isExclusive: true },
+  { name: "Anime Estampa 23", type: "Classroom of Elite", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 24", type: "Dr. Stone", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 25", type: "Fire Force", price: 59.90, isExclusive: true },
+  { name: "Anime Estampa 26", type: "Blue Lock", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 27", type: "Haikyuu", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 28", type: "Kuroko no Basket", price: 74.90, isExclusive: false },
+  { name: "Anime Estampa 29", type: "Slam Dunk", price: 74.90, isExclusive: true },
+  { name: "Anime Estampa 30", type: "Captain Tsubasa", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 31", type: "Pokémon", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 32", type: "Digimon", price: 69.90, isExclusive: true },
+  { name: "Anime Estampa 33", type: "Yu-Gi-Oh", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 34", type: "Beyblade", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 35", type: "Inuyasha", price: 59.90, isExclusive: true },
+  { name: "Anime Estampa 36", type: "Cowboy Bebop", price: 69.90, isExclusive: false },
+  { name: "Anime Estampa 37", type: "Neon Genesis", price: 64.90, isExclusive: false },
+  { name: "Anime Estampa 38", type: "Ghost in the Shell", price: 74.90, isExclusive: false },
+  { name: "Anime Estampa 39", type: "Steins Gate", price: 74.90, isExclusive: true },
+  { name: "Anime Estampa 40", type: "Code Geass", price: 69.90, isExclusive: false },
 ];
 
+// 40+ Games items
 const gamesSublimacao = [
   { name: "Game 1", type: "Minecraft", price: 94.90, isExclusive: true },
   { name: "Game 2", type: "Fortnite", price: 89.90, isExclusive: false },
@@ -100,6 +213,31 @@ const gamesSublimacao = [
   { name: "Game 8", type: "CS:GO", price: 84.90, isExclusive: false },
   { name: "Game 9", type: "Free Fire", price: 99.90, isExclusive: false },
   { name: "Game 10", type: "Roblox", price: 89.90, isExclusive: false },
+  { name: "Game 11", type: "Among Us", price: 94.90, isExclusive: true },
+  { name: "Game 12", type: "Fall Guys", price: 89.90, isExclusive: false },
+  { name: "Game 13", type: "Apex Legends", price: 89.90, isExclusive: true },
+  { name: "Game 14", type: "Overwatch", price: 94.90, isExclusive: false },
+  { name: "Game 15", type: "Rainbow Six", price: 89.90, isExclusive: false },
+  { name: "Game 16", type: "PUBG", price: 89.90, isExclusive: false },
+  { name: "Game 17", type: "Rocket League", price: 94.90, isExclusive: true },
+  { name: "Game 18", type: "NBA 2K", price: 84.90, isExclusive: false },
+  { name: "Game 19", type: "Mortal Kombat", price: 99.90, isExclusive: false },
+  { name: "Game 20", type: "Street Fighter", price: 89.90, isExclusive: false },
+  { name: "Game 21", type: "Tekken", price: 94.90, isExclusive: true },
+  { name: "Game 22", type: "Super Smash Bros", price: 89.90, isExclusive: false },
+  { name: "Game 23", type: "Mario", price: 89.90, isExclusive: true },
+  { name: "Game 24", type: "Zelda", price: 94.90, isExclusive: false },
+  { name: "Game 25", type: "Sonic", price: 89.90, isExclusive: false },
+  { name: "Game 26", type: "God of War", price: 89.90, isExclusive: false },
+  { name: "Game 27", type: "The Last of Us", price: 94.90, isExclusive: true },
+  { name: "Game 28", type: "Resident Evil", price: 84.90, isExclusive: false },
+  { name: "Game 29", type: "Silent Hill", price: 99.90, isExclusive: false },
+  { name: "Game 30", type: "Elden Ring", price: 89.90, isExclusive: false },
+  { name: "Game 31", type: "Dark Souls", price: 94.90, isExclusive: true },
+  { name: "Game 32", type: "Hogwarts Legacy", price: 89.90, isExclusive: false },
+  { name: "Game 33", type: "Assassin's Creed", price: 89.90, isExclusive: true },
+  { name: "Game 34", type: "Far Cry", price: 94.90, isExclusive: false },
+  { name: "Game 35", type: "Red Dead", price: 89.90, isExclusive: false },
 ];
 
 const gamesEstampa = [
@@ -113,6 +251,31 @@ const gamesEstampa = [
   { name: "Game Estampa 8", type: "CS:GO", price: 64.90, isExclusive: false },
   { name: "Game Estampa 9", type: "Free Fire", price: 79.90, isExclusive: false },
   { name: "Game Estampa 10", type: "Roblox", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 11", type: "Among Us", price: 74.90, isExclusive: true },
+  { name: "Game Estampa 12", type: "Fall Guys", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 13", type: "Apex Legends", price: 69.90, isExclusive: true },
+  { name: "Game Estampa 14", type: "Overwatch", price: 74.90, isExclusive: false },
+  { name: "Game Estampa 15", type: "Rainbow Six", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 16", type: "PUBG", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 17", type: "Rocket League", price: 74.90, isExclusive: true },
+  { name: "Game Estampa 18", type: "NBA 2K", price: 64.90, isExclusive: false },
+  { name: "Game Estampa 19", type: "Mortal Kombat", price: 79.90, isExclusive: false },
+  { name: "Game Estampa 20", type: "Street Fighter", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 21", type: "Tekken", price: 74.90, isExclusive: true },
+  { name: "Game Estampa 22", type: "Super Smash Bros", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 23", type: "Mario", price: 69.90, isExclusive: true },
+  { name: "Game Estampa 24", type: "Zelda", price: 74.90, isExclusive: false },
+  { name: "Game Estampa 25", type: "Sonic", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 26", type: "God of War", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 27", type: "The Last of Us", price: 74.90, isExclusive: true },
+  { name: "Game Estampa 28", type: "Resident Evil", price: 64.90, isExclusive: false },
+  { name: "Game Estampa 29", type: "Silent Hill", price: 79.90, isExclusive: false },
+  { name: "Game Estampa 30", type: "Elden Ring", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 31", type: "Dark Souls", price: 74.90, isExclusive: true },
+  { name: "Game Estampa 32", type: "Hogwarts Legacy", price: 69.90, isExclusive: false },
+  { name: "Game Estampa 33", type: "Assassin's Creed", price: 69.90, isExclusive: true },
+  { name: "Game Estampa 34", type: "Far Cry", price: 74.90, isExclusive: false },
+  { name: "Game Estampa 35", type: "Red Dead", price: 69.90, isExclusive: false },
 ];
 
 const inclusos = [
@@ -215,9 +378,9 @@ const BestSellersCarousel = ({ items }: { items: BestSellerItem[] }) => {
 
 const Personagens = () => {
   const [tipoSelecionado, setTipoSelecionado] = useState<TipoModelo>("Sublimações");
-  const [visiblePop, setVisiblePop] = useState(4);
-  const [visibleAnimes, setVisibleAnimes] = useState(4);
-  const [visibleGames, setVisibleGames] = useState(4);
+  const [visiblePop, setVisiblePop] = useState(6);
+  const [visibleAnimes, setVisibleAnimes] = useState(6);
+  const [visibleGames, setVisibleGames] = useState(6);
 
   const bestSellers = tipoSelecionado === "Sublimações" ? bestSellersSublimacao : bestSellersEstampa;
   const pop = tipoSelecionado === "Sublimações" ? popSublimacao : popEstampa;
@@ -458,74 +621,66 @@ const Personagens = () => {
 
         <WaveDivider variant="blue-to-white" />
 
-        {/* O que está Incluso Section */}
+        {/* What's Included Section */}
         <section className="bg-background px-4 py-10">
-          <h2 className="text-3xl font-black text-foreground text-center leading-tight mb-3">
-            O que está Incluso?
+          <h2 className="text-3xl font-black text-[#2563eb] text-center leading-tight mb-8">
+            O Que Está<br />Incluso?
           </h2>
-          <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-md mx-auto">
-            Veja tudo que você recebe no pacote básico e as opções extras disponíveis
-          </p>
 
-          <div className="space-y-4 mb-4">
+          <div className="space-y-3 mb-6">
             {inclusos.map((item, index) => (
-              <div key={index} className="bg-[#ecfdf5] border-2 border-[#22c55e] rounded-2xl p-4 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-[#22c55e] flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-7 h-7 text-white" />
+              <div key={index} className="bg-card rounded-xl p-4 flex items-center gap-4 shadow-sm border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-foreground text-base">{item.title}</h3>
-                    <span className="text-[#22c55e] font-semibold text-sm flex items-center gap-1">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Incluso
-                    </span>
-                  </div>
-                  <p className="text-foreground/60 text-sm mt-0.5">{item.description}</p>
+                  <h3 className="font-bold text-foreground">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
                 </div>
+                <span className="text-xs font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full">
+                  INCLUSO
+                </span>
               </div>
             ))}
           </div>
 
-          <div className="space-y-4">
+          {/* Extras */}
+          <h3 className="text-xl font-bold text-[#2563eb] text-center mb-4">Extras Opcionais</h3>
+          <div className="space-y-3">
             {extras.map((item, index) => (
-              <div key={index} className="bg-gradient-to-r from-[#e6f0ff] to-[#cce0ff] border-2 border-[#2563eb] rounded-2xl p-4 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#2563eb] to-[#1e40af] flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-7 h-7 text-white" />
+              <div key={index} className="bg-gradient-to-r from-[#e6f0ff] to-[#cce0ff] rounded-xl p-4 flex items-center gap-4 shadow-sm border border-[#2563eb]">
+                <div className="w-12 h-12 rounded-full bg-[#2563eb]/20 flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-[#2563eb]" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-foreground text-base">{item.title}</h3>
-                    <span className="text-[#1e40af] font-bold text-base whitespace-nowrap">{item.price}</span>
-                  </div>
+                  <h3 className="font-bold text-[#1e40af]">{item.title}</h3>
+                  <p className="text-[#2563eb] text-sm font-medium">{item.price}</p>
                 </div>
+                <Star className="w-5 h-5 text-[#2563eb]" />
               </div>
             ))}
           </div>
         </section>
 
+        <WaveDivider variant="white-to-blue" />
+
         {/* FAQ Section */}
-        <section className="bg-background px-4 py-10">
-          <h2 className="text-3xl font-black text-foreground text-center leading-tight mb-3">
-            Dúvidas Frequentes
+        <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 py-10">
+          <h2 className="text-3xl font-black text-white text-center leading-tight mb-8">
+            Perguntas<br />Frequentes
           </h2>
-          <p className="text-foreground/70 text-center text-base leading-relaxed mb-8 max-w-md mx-auto">
-            Tudo que você precisa saber sobre camisetas de Personagens
-          </p>
 
           <Accordion type="single" collapsible className="space-y-3">
             {faqItems.map((item, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="bg-white rounded-2xl border border-border/30 px-5 shadow-sm"
+                className="bg-white/10 backdrop-blur-sm rounded-xl border-none overflow-hidden"
               >
-                <AccordionTrigger className="text-left font-semibold text-foreground py-5 hover:no-underline">
+                <AccordionTrigger className="px-4 py-4 text-white font-bold text-left hover:no-underline">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/70 pb-5">
+                <AccordionContent className="px-4 pb-4 text-white/80">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -533,24 +688,22 @@ const Personagens = () => {
           </Accordion>
         </section>
 
-        {/* CTA Section */}
-        <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 py-14 text-center">
-          <div className="flex justify-center mb-6">
-            <Sparkles className="w-16 h-16 text-white" strokeWidth={1.5} />
-          </div>
-          
-          <h2 className="text-2xl font-black text-white leading-tight mb-4">
-            Não encontrou seu<br />personagem favorito?
-          </h2>
-          
-          <p className="text-white/80 text-base leading-relaxed mb-8 max-w-sm mx-auto">
-            Fale com nosso Designer agora e receba sua proposta personalizada!
-          </p>
+        <WaveDivider variant="blue-to-white" />
 
-          <button className="w-full max-w-sm bg-white hover:bg-white/95 text-[#1e40af] py-4 px-8 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg mx-auto">
-            <MessageCircle className="w-5 h-5" />
-            <span>Solicitar Meu Personagem</span>
-          </button>
+        {/* CTA Section */}
+        <section className="bg-background px-4 py-10">
+          <div className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] rounded-2xl p-8 text-center">
+            <h2 className="text-2xl font-black text-white mb-4">
+              Pronto para criar sua camiseta?
+            </h2>
+            <p className="text-white/80 mb-6">
+              Entre em contato e peça já a sua!
+            </p>
+            <button className="bg-white text-[#1e40af] px-8 py-4 rounded-xl font-bold flex items-center gap-3 mx-auto hover:bg-white/95 transition-all shadow-lg">
+              <MessageCircle className="w-5 h-5" />
+              <span>Falar no WhatsApp</span>
+            </button>
+          </div>
         </section>
       </main>
       <Footer />
