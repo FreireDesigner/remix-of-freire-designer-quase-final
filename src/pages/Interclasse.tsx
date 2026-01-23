@@ -51,7 +51,7 @@ const inclusos = [
 ];
 
 const extras = [
-  { icon: Zap, title: "Design Exclusivo", price: "+R$ 30.00" },
+  { icon: Zap, title: "Design Exclusivo", price: "+R$ 30,00" },
 ];
 
 const faqItems = [
@@ -66,6 +66,11 @@ const Interclasse = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
+        {/* Banner Image */}
+        <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#0038a8] to-[#0059fa] flex items-center justify-center">
+          <span className="text-white/30 text-sm font-medium">BANNER_INTERCLASSE</span>
+        </div>
+
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-[#0038a8] to-[#0059fa] px-4 pt-8 pb-4">
           {/* Badge */}
@@ -87,20 +92,13 @@ const Interclasse = () => {
           </p>
 
           {/* Stats */}
-          <div className="flex justify-center gap-6 mb-8">
+          <div className="flex justify-center gap-6">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-2xl font-black text-white italic">{stat.value}</div>
                 <div className="text-white/80 text-xs font-medium">{stat.label}</div>
               </div>
             ))}
-          </div>
-
-          {/* Image Container */}
-          <div className="mx-auto max-w-sm">
-            <div className="bg-[#2563eb]/40 rounded-3xl border-2 border-[#3b82f6]/30 aspect-square flex items-center justify-center">
-              <span className="text-[#5b9aff]/50 text-sm font-medium">O_IMAGE_INTERCLASSE</span>
-            </div>
           </div>
         </section>
 
@@ -262,14 +260,14 @@ const Interclasse = () => {
 
           <div className="space-y-4">
             {extras.map((item, index) => (
-              <div key={index} className="bg-gradient-to-r from-[#fef3c7] to-[#fde68a] border-2 border-[#f59e0b] rounded-2xl p-4 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-[#f59e0b] flex items-center justify-center flex-shrink-0">
+              <div key={index} className="bg-gradient-to-r from-[#fff7e6] to-[#ffe4b3] border-2 border-[#f59e0b] rounded-2xl p-4 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#f59e0b] to-[#ea580c] flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="font-bold text-foreground text-base">{item.title}</h3>
-                    <span className="text-[#f59e0b] font-bold text-base">{item.price}</span>
+                    <span className="text-[#ea580c] font-bold text-base">{item.price}</span>
                   </div>
                 </div>
               </div>
