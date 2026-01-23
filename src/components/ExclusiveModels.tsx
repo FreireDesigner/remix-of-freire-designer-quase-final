@@ -23,8 +23,8 @@ const ExclusiveModels = () => {
             <Crown className="w-5 h-5 text-foreground" fill="currentColor" />
           </div>
         </div>
-        <p className="text-foreground font-normal max-w-md mx-auto text-sm">
-          Designs únicos e exclusivos que você só encontra aqui!
+        <p className="text-foreground font-normal max-w-lg mx-auto text-sm">
+          Designs únicos e exclusivos que você só encontra aqui! Camisetas personalizadas com arte autoral desenvolvidas especialmente para seu evento ou time!
         </p>
       </div>
 
