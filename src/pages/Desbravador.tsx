@@ -505,8 +505,7 @@ const Desbravador = () => {
                   <item.icon className="w-6 h-6 text-[#2563eb]" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-[#1e40af]">{item.title}</h3>
-                  <p className="text-[#2563eb] text-sm font-medium">{item.price}</p>
+                  <h3 className="font-bold text-[#1e40af]">{item.title} <span className="font-extrabold">{item.price}</span></h3>
                 </div>
                 <Star className="w-5 h-5 text-[#2563eb]" />
               </div>
